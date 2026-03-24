@@ -119,7 +119,7 @@ function App() {
       solution: "I applied a Lean UX Canvas to align stakeholder expectations, defined UX KPIs, and facilitated a co-creation workshop with 15 users to map personas, journeys, and pain points. I ran 19 card sorting sessions across 4 markets to restructure navigation around users' mental models, then led iterative usability testing rounds across regions. A UX ROI simulation demonstrated a +30% task completion improvement and a projected saving of $147,600 for a single task. I also contributed to the first design system at Nestlé for employee experience — covering foundations and a full component library across Desktop, Tablet, and Mobile — and led the team's transition from Sketch to Figma.",
       results: [
         { metric: "+80%", description: "Increase in self-service adoption post-launch" },
-        { metric: "275,000+", description: "Employees impacted across five Nestlé markets" },
+        { metric: "275K+", description: "Employees impacted across five Nestlé markets" },
       ],
       images: [
         { type: "bg-gradient-to-br from-red-600 to-red-800", label: "Portal Navigation & IA" },
@@ -739,7 +739,15 @@ function App() {
               <p className="text-base text-gray-300 leading-relaxed font-light max-w-xl">
                 Hi! My name is Eugenia and I help organizations craft customer-centered services and products while empowering teams to lead meaningful change.
               </p>
-              <a href="#work" className="flex-shrink-0 border border-purple-500 text-purple-400 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white hover:border-purple-700 transition-colors">
+              <a
+                href="#work"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const target = document.querySelector('#work')
+                  if (target) target.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="flex-shrink-0 border border-purple-500 text-purple-400 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white hover:border-purple-700 transition-colors"
+              >
                 LEARN MORE ↓
               </a>
             </div>
