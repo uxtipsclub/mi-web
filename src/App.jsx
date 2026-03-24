@@ -778,7 +778,7 @@ function App() {
       <section className="py-20 px-6 md:px-12 bg-black text-white border-b border-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-800 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-400">003 / TESTIMONIALS</span>
+            <span className="text-xs font-bold tracking-widest text-purple-400">001 / TESTIMONIALS</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-white mb-16">
             What clients<br />
@@ -823,7 +823,7 @@ function App() {
       <section id="work" className="py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">004 / WORK</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">002 / WORK</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             Latest<br />
@@ -884,7 +884,7 @@ function App() {
       <section id="services" className="py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">006 / SERVICES</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">003 / SERVICES</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             How we can<br />
@@ -930,7 +930,7 @@ function App() {
 
         {/* Text content */}
         <div className="max-w-7xl mx-auto px-12 md:px-16 pt-20 pb-16">
-          <span className="text-xs font-bold tracking-widest text-purple-400 mb-8 block">007 / COMMUNITY</span>
+          <span className="text-xs font-bold tracking-widest text-purple-400 mb-8 block">004 / COMMUNITY</span>
           <div className="grid md:grid-cols-2 gap-16 items-end mb-16">
             <h2 className="text-5xl md:text-7xl font-black leading-none text-white">
               Helping designers<br />
@@ -1096,7 +1096,7 @@ function App() {
       <section id="about" className="py-20 px-6 md:px-12 bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">008 / ABOUT</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">005 / ABOUT</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             About<br />
@@ -1153,7 +1153,7 @@ function App() {
       <section id="contact-form" className="py-20 px-6 md:px-12 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-16 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">009 / CONTACT</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">006 / CONTACT</span>
             <span className="text-xs text-gray-400 tracking-widest">LET'S WORK TOGETHER</span>
           </div>
           <div className="grid md:grid-cols-2 gap-0 divide-x divide-gray-200">
