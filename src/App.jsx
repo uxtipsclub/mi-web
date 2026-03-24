@@ -735,21 +735,23 @@ function App() {
               </span><br />
               experiences
             </h1>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-t border-white/10 pt-10">
+            <div className="flex flex-col gap-8 border-t border-white/10 pt-10">
               <p className="text-base text-gray-300 leading-relaxed font-light max-w-xl">
                 Hi! My name is Eugenia and I help organizations craft customer-centered services and products while empowering teams to lead meaningful change.
               </p>
-              <a
-                href="#work"
-                onClick={(e) => {
-                  e.preventDefault()
-                  const target = document.querySelector('#work')
-                  if (target) target.scrollIntoView({ behavior: 'smooth' })
-                }}
-                className="flex-shrink-0 border border-purple-500 text-purple-400 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white hover:border-purple-700 transition-colors"
-              >
-                LEARN MORE ↓
-              </a>
+              <div>
+                <a
+                  href="#work"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const target = document.querySelector('#work')
+                    if (target) target.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="inline-block border border-purple-500 text-purple-400 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white hover:border-purple-700 transition-colors"
+                >
+                  LEARN MORE ↓
+                </a>
+              </div>
             </div>
 
             {/* Trusted by — inline in hero */}
