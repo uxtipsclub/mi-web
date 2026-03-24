@@ -665,7 +665,14 @@ function App() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setIsMenuOpen(false)
+                    setTimeout(() => {
+                      const target = document.querySelector(item.href)
+                      if (target) target.scrollIntoView({ behavior: 'smooth' })
+                    }, 300)
+                  }}
                   className="px-0 py-4 text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors border-b border-gray-100"
                 >
                   {item.name}
