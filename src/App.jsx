@@ -1106,7 +1106,7 @@ function App() {
             {/* Bio text — full */}
             <div className="flex flex-col justify-between">
               <div className="space-y-6">
-                <p className="text-lg text-gray-700 leading-relaxed font-light">Hi, I'm Eugenia, UX/CX and Service Design leader, community builder, and creator.</p>
+                <p className="text-lg text-gray-700 leading-relaxed font-light">Hi, I'm Eugenia, UX/CX and Design leader, community builder, and creator.</p>
                 <p className="text-lg text-gray-700 leading-relaxed font-light">I help organizations design better products and services by bringing clarity, strategy, and user-centered thinking into complex systems.</p>
                 <p className="text-lg text-gray-700 leading-relaxed font-light">After over 20 years across agencies, startups, and global companies—including Zendesk, Nestlé, and LGT Private Banking—I now work at the intersection of design, business, and organizational transformation, collaborating selectively with teams and partners.</p>
                 <p className="text-lg text-gray-700 leading-relaxed font-light">Alongside my corporate work, I built one of the largest Spanish-speaking UX communities on YouTube and founded <a href="https://uxtips.club" className="text-purple-700 underline hover:text-purple-900 transition-colors">uxtips.club</a>, a platform helping designers grow beyond UI into strategic and product thinking.</p>
