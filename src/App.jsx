@@ -178,7 +178,6 @@ function App() {
       solution: "I applied the Nielsen Norman Group UX Maturity Framework to diagnose the organization across Culture, Strategy, Process, and Outcomes, then defined a structured growth roadmap. I established a cross-regional design community of practice through online and in-person events, developed UX Playbooks and guidelines, and integrated UX as a core pillar in Product Manager education across IT. I also facilitated a Design Hackathon — leading stakeholder workshops, creating Proto Personas and Service Blueprints, and introducing User Ecosystem Thinking to help teams design around the full employee experience.",
       results: [
         { metric: "+50%", description: "Increase in UX budget allocation secured" },
-        { metric: "1st", description: "UX community of practice established across Nestlé regions" },
         { metric: "1st", description: "UX metrics incorporated into Nestlé's Product Management Pillar" },
       ],
       images: [
