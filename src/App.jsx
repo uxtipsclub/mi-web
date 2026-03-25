@@ -179,6 +179,7 @@ function App() {
       results: [
         { metric: "+50%", description: "Increase in UX budget allocation secured" },
         { metric: "1st", description: "UX community of practice established across Nestlé regions" },
+        { metric: "1st", description: "UX metrics incorporated into Nestlé's Product Management Pillar" },
       ],
       images: [
         { type: "bg-gradient-to-br from-red-500 to-orange-600", label: "UX Maturity Roadmap" },
