@@ -622,7 +622,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-16">
             <a href="#" aria-label="Eugenia Jongewaard — Go to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <img src="/eugenia_logo_main.png" alt="Eugenia Jongewaard" className="h-8 w-auto" />
+              <img src="/eugenia_logo_main.png" alt="Eugenia Jongewaard - Home" className="h-8 w-auto" />
             </a>
 
             {/* Desktop Nav */}
@@ -1113,7 +1113,7 @@ function App() {
 
             {/* Photo — matches text column height */}
             <div className="flex flex-col">
-              <img src="/eugenia_main.png" alt="Eugenia Jongewaard" className="w-full flex-1 object-cover min-h-[400px]" />
+              <img src="/eugenia_main.png" alt="Eugenia Jongewaard on stage at UX Nordic Conference" className="w-full flex-1 object-cover min-h-[400px]" />
               <div className="mt-4">
                 <a
                   href="https://www.instagram.com/p/DLQLGeWoCHI/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ=="
@@ -1121,7 +1121,7 @@ function App() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-purple-700 hover:text-purple-900 transition-colors group"
                 >
-                  <span>Take a look at my career growth in images ↗</span>
+                  <span>2023 — Speaker at UX Nordic Conference (Denmark), presenting to 900+ professionals.</span>
                 </a>
               </div>
             </div>
@@ -1154,8 +1154,8 @@ function App() {
             <span className="text-xs font-bold tracking-widest text-purple-700">006 / CONTACT</span>
             <span className="text-xs text-gray-400 tracking-widest">LET'S WORK TOGETHER</span>
           </div>
-          <div className="grid md:grid-cols-2 gap-0 divide-x divide-gray-200">
-            <div className="md:pr-16">
+          <div className="grid lg:grid-cols-2 gap-0 lg:divide-x lg:divide-gray-200">
+            <div className="lg:pr-16">
               <h2 className="text-5xl md:text-7xl font-black leading-none tracking-tight text-black mb-4">Let's <span className="text-purple-700">talk</span></h2>
               <p className="text-xl text-gray-500 font-light max-w-xl mb-12">Have a project in mind or want to explore how we can work together? Drop me a message.</p>
               {formStatus === 'success' ? (
@@ -1207,7 +1207,7 @@ function App() {
                 </form>
               )}
             </div>
-            <div className="md:pl-16 pt-12 md:pt-0">
+            <div className="lg:pl-16 pt-12 lg:pt-0">
               <p className="text-xs font-bold tracking-widest text-purple-700 mb-4">LOCATION</p>
               <p className="text-gray-700 text-base font-light mb-8 flex items-center gap-1.5">
                 I
