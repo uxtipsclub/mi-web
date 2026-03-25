@@ -1115,14 +1115,7 @@ function App() {
             <div className="flex flex-col">
               <img src="/eugenia_main.png" alt="Eugenia Jongewaard on stage at UX Nordic Conference" className="w-full flex-1 object-cover min-h-[400px]" />
               <div className="mt-4">
-                <a
-                  href="https://www.instagram.com/p/DLQLGeWoCHI/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ=="
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-purple-700 hover:text-purple-900 transition-colors group"
-                >
-                  <span>2023 — Speaker at UX Nordic Conference (Denmark), presenting to 900+ professionals.</span>
-                </a>
+                <p className="text-xs font-bold tracking-widest text-purple-700">2023 — Speaker at UX Nordic Conference (Denmark), presenting to 900+ professionals.</p>
               </div>
             </div>
           </div>
