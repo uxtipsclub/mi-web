@@ -626,7 +626,7 @@ function App() {
             </a>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center divide-x divide-gray-300 border-x border-gray-300">
+            <nav className="hidden lg:flex items-center divide-x divide-gray-300 border-x border-gray-300">
               {menuItems.map((item) => (
                 <a
                   key={item.name}
@@ -649,7 +649,7 @@ function App() {
             {/* Mobile Burger */}
             <button
               onClick={toggleMenu}
-              className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
+              className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
               aria-label="Toggle menu"
             >
               <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
@@ -659,7 +659,7 @@ function App() {
           </div>
 
           {/* Mobile Menu */}
-          <nav className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+          <nav className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
             <div className="flex flex-col border-t border-gray-200">
               {menuItems.map((item) => (
                 <a
