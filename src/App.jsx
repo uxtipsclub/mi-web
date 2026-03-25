@@ -720,7 +720,7 @@ function App() {
         {/* Main hero content */}
         <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 py-16">
           <div>
-            <h1 className="text-6xl md:text-6xl lg:text-8xl font-black leading-none tracking-tight text-white mb-12">
+            <h1 className="text-6xl md:text-8xl lg:text-8xl font-black leading-none tracking-tight text-white mb-12">
               Let's transform<br />
               <span
                 style={{
