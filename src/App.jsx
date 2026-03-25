@@ -242,7 +242,7 @@ function App() {
       title: "AI-Augmented Experience Strategy",
       subtitle: "Insight at Scale",
       description: "Helping organizations leverage AI to continuously understand customer behavior, generate insights from qualitative and quantitative data, and inform product decisions at scale.",
-      features: ["AI-Powered Insight Generation", "Qual & Quant Synthesis", "Behavioral Analysis", "Experience Decision Support"]
+      features: ["AI-Powered Insight Generation", "Qualitative & Quantitative Synthesis at Scale", "Behavioral & Experience Intelligence", "AI-Enabled Design & Research Operations"]
     },
     {
       title: "Experience Strategy & Governance",
@@ -366,8 +366,8 @@ function App() {
           <section className="px-6 md:px-12 py-12">
             <div className="max-w-7xl mx-auto">
               {selectedCaseStudy.thumbnail.startsWith('/')
-                ? <img src={selectedCaseStudy.thumbnail} alt={selectedCaseStudy.title} className="w-full h-96 md:h-[600px] object-cover" />
-                : <div className={`w-full h-96 md:h-[600px] ${selectedCaseStudy.thumbnail}`} />
+                ? <img src={selectedCaseStudy.thumbnail} alt={selectedCaseStudy.title} className="w-full h-96 md:h-[600px] object-cover rounded-lg" />
+                : <div className={`w-full h-96 md:h-[600px] rounded-lg ${selectedCaseStudy.thumbnail}`} />
               }
             </div>
           </section>
@@ -395,7 +395,7 @@ function App() {
                 <div className="grid md:grid-cols-3 gap-6">
                   {selectedCaseStudy.images.map((image, index) => (
                     <div key={index}>
-                      <div className={`w-full h-72 ${image.type} mb-4`} />
+                      <div className={`w-full h-72 rounded-lg ${image.type} mb-4`} />
                       <p className="text-xs font-bold tracking-widest text-gray-500">{image.label}</p>
                     </div>
                   ))}
@@ -441,7 +441,7 @@ function App() {
                     className="group cursor-pointer p-10 hover:bg-gray-50 transition-colors"
                   >
                     {study.thumbnail.startsWith('/')
-                      ? <img src={study.thumbnail} alt={study.title} className="w-full h-64 object-cover mb-8" />
+                      ? <img src={study.thumbnail} alt={study.title} className="w-full h-64 object-cover mb-8 rounded-lg" />
                       : <div className={`w-full h-64 ${study.thumbnail} mb-8`} />
                     }
                     <p className="text-xs font-bold tracking-widest mb-3 text-purple-700">{study.category}</p>
@@ -764,7 +764,7 @@ function App() {
                   { name: "Deloitte", src: "/logos/deloitte.png" },
                   { name: "LGT", src: "/logos/lgt.png" },
                 ].map((brand) => (
-                  <div key={brand.name} className="flex items-center justify-center h-10 px-5 bg-white/80 rounded">
+                  <div key={brand.name} className="flex items-center justify-center h-10 px-5 bg-white/50 rounded">
                     <img src={brand.src} alt={brand.name} className="h-6 w-auto object-contain" />
                   </div>
                 ))}
@@ -843,7 +843,7 @@ function App() {
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <div
-                      className={`w-full h-80 lg:h-[460px] ${study.thumbnail.startsWith('/') ? 'object-cover' : study.thumbnail}`}
+                      className={`w-full h-80 lg:h-[460px] rounded-lg ${study.thumbnail.startsWith('/') ? 'object-cover' : study.thumbnail}`}
                       style={study.thumbnail.startsWith('/') ? { backgroundImage: `url(${study.thumbnail})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
                     />
                   </div>
@@ -1000,7 +1000,7 @@ function App() {
             ]).map((video, i) => {
               const Card = (
                 <div className="flex-shrink-0 w-56 cursor-pointer group">
-                  <div className={`w-full h-32 bg-gradient-to-br ${video.color} relative mb-3 overflow-hidden`}>
+                  <div className={`w-full h-32 bg-gradient-to-br ${video.color} relative mb-3 overflow-hidden rounded-lg`}>
                     {video.thumbnail && <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                       <div className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center">
@@ -1042,7 +1042,7 @@ function App() {
             ]).map((video, i) => {
               const Card = (
                 <div className="flex-shrink-0 w-56 cursor-pointer group">
-                  <div className={`w-full h-32 bg-gradient-to-br ${video.color} relative mb-3 overflow-hidden`}>
+                  <div className={`w-full h-32 bg-gradient-to-br ${video.color} relative mb-3 overflow-hidden rounded-lg`}>
                     {video.thumbnail && <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                       <div className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center">
@@ -1115,7 +1115,7 @@ function App() {
 
             {/* Photo — matches text column height */}
             <div className="flex flex-col">
-              <img src="/eugenia_main.png" alt="Eugenia Jongewaard on stage at UX Nordic Conference" className="w-full flex-1 object-cover min-h-[400px]" />
+              <img src="/eugenia_main.png" alt="Eugenia Jongewaard on stage at UX Nordic Conference" className="w-full flex-1 object-cover min-h-[400px] rounded-lg" />
               <div className="mt-4">
                 <p className="text-xs font-bold tracking-widest text-purple-700">2023 — Speaker at UX Nordic Conference (Denmark), presenting to 900+ professionals.</p>
               </div>
