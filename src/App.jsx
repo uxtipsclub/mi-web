@@ -213,7 +213,7 @@ function App() {
     {
       text: "Eugenia instilled in me an appreciation for the value of maintaining a focus on User Experience, both in Support interactions and in the broader world of Design.",
       author: "James Peterson",
-      role: "Technical Architect at Zendesk",
+      role: "Technical Architect, Zendesk",
       linkedin: "https://www.linkedin.com/in/james-peterson-91655637/",
       photo: "/testimonials/james.png"
     },
@@ -227,7 +227,7 @@ function App() {
     {
       text: "I recommend Eugenia as a team player with extraordinary attention to detail and I'm sure that she would add value to any initiative requiring design thinking knowledge and tools.",
       author: "Rafal Michalski",
-      role: "Global EX at Nestlé",
+      role: "Global EX, Nestlé",
       linkedin: "https://www.linkedin.com/in/rafal-m-michalski/",
       photo: "/testimonials/Rafal.jpeg"
     }
@@ -808,11 +808,13 @@ function App() {
               <div key={index} className="p-10 border-t-2 border-t-purple-700">
                 <p className="text-lg mb-8 leading-relaxed text-gray-300 font-light">"{testimonial.text}"</p>
                 <div className="border-t border-gray-800 pt-6 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-700 border-2 border-purple-700 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                    {testimonial.photo
-                      ? <img src={testimonial.photo} alt={testimonial.author} className="w-full h-full object-cover" />
-                      : <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                    }
+                  <div className="flex-shrink-0 rounded-full p-[2px]" style={{ background: 'linear-gradient(135deg, #a855f7, #4ade80)' }}>
+                    <div className="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center overflow-hidden">
+                      {testimonial.photo
+                        ? <img src={testimonial.photo} alt={testimonial.author} className="w-full h-full object-cover" />
+                        : <svg className="w-7 h-7 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                      }
+                    </div>
                   </div>
                   <div>
                     {testimonial.linkedin
