@@ -931,7 +931,7 @@ function App() {
         {/* Text content */}
         <div className="max-w-7xl mx-auto px-12 md:px-16 pt-20 pb-16">
           <span className="text-xs font-bold tracking-widest text-purple-400 mb-8 block">004 / COMMUNITY</span>
-          <div className="grid md:grid-cols-2 gap-16 items-end mb-16">
+          <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
             <h2 className="text-5xl md:text-7xl font-black leading-none text-white">
               Helping designers<br />
               <span className="text-purple-400">level up</span><br />
