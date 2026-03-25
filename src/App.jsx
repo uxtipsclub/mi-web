@@ -8,7 +8,21 @@ function App() {
   const [navVisible, setNavVisible] = useState(true)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [formStatus, setFormStatus] = useState('idle') // idle | submitting | success | error
+  const [pageTransition, setPageTransition] = useState(false)
   const lastScrollY = useRef(0)
+
+  const goToSection = (href, fromMobileMenu = false) => {
+    if (fromMobileMenu) setIsMenuOpen(false)
+    setPageTransition(true)
+    setTimeout(() => {
+      const target = document.querySelector(href)
+      if (target) {
+        const offset = window.innerWidth >= 1024 ? 0 : 64
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - offset })
+      }
+      requestAnimationFrame(() => setPageTransition(false))
+    }, fromMobileMenu ? 300 : 0)
+  }
 
   const heroWords = [
     { text: 'customer', color: '#a855f7' },
@@ -617,6 +631,15 @@ function App() {
   return (
     <div className="min-h-screen">
 
+      {/* Page transition overlay */}
+      <div
+        className="fixed inset-0 z-[45] bg-white pointer-events-none"
+        style={{
+          opacity: pageTransition ? 1 : 0,
+          transition: pageTransition ? 'none' : 'opacity 0.6s ease',
+        }}
+      />
+
       {/* Header */}
       <header className={`fixed top-0 w-full bg-white z-50 border-b border-gray-200 transition-transform duration-300 ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -631,7 +654,7 @@ function App() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => { e.preventDefault(); goToSection(item.href) }}
                   className="px-6 py-[18px] text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors"
                 >
                   {item.name}
@@ -667,14 +690,7 @@ function App() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setIsMenuOpen(false)
-                    setTimeout(() => {
-                      const target = document.querySelector(item.href)
-                      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 64, behavior: 'smooth' })
-                    }, 300)
-                  }}
+                  onClick={(e) => { e.preventDefault(); goToSection(item.href, true) }}
                   className="px-0 py-4 text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors border-b border-gray-100"
                 >
                   {item.name}
