@@ -194,7 +194,7 @@ function App() {
       thumbnail: "/cases/cases_zendesk.png",
       year: "2014",
       client: "Zendesk",
-      overview: "As one of Zendesk's first employees, I spent 10 years shaping the company's presence across LATAM — leading support operations, launching community initiatives, and driving the company's growth to IPO.",
+      overview: "As employee #8 at Zendesk, I led LATAM support workflows, initiated the region's first social media channels, and drove Customer Success and Marketing initiatives — helping grow the company from startup to IPO.",
       challenge: "Zendesk had no established presence in Latin America — no local support infrastructure, no regional community, and no localized workflows for Spanish and Portuguese-speaking customers. Growing a market from scratch meant bridging CX operations, product localization, and on-the-ground relationship building simultaneously.",
       solution: "I streamlined multilingual support workflows and built reporting practices using Kibana, GoodData, Salesforce, and Jira to monitor CX metrics and surface trends. I synthesized customer insights to directly inform product decisions for LATAM markets, led and mentored a regional Tier 1 & 2 support team, and launched Zendesk's first LATAM social media channels. I organized customer meetups across São Paulo, Buenos Aires, Santiago de Chile, and Montevideo to reduce adoption barriers and build community. I also partnered with major accounts including LATAM Airlines, Twitter, and Groupon, and trained clients across LATAM and Spain to build custom reports and KPIs using MAQL within GoodData.",
       results: [
