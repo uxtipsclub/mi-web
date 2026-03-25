@@ -693,10 +693,10 @@ function App() {
       </header>
 
       {/* Hero */}
-      <section className="relative pt-16 text-white min-h-screen flex flex-col overflow-hidden bg-black">
+      <section className="relative pt-16 text-white flex flex-col overflow-hidden bg-black" style={{ minHeight: '100dvh' }}>
 
         {/* Background video — YouTube embed scaled to cover full viewport */}
-        <div className="absolute overflow-hidden" style={{ inset: '-10px', pointerEvents: 'none' }}>
+        <div className="absolute inset-0 overflow-hidden" style={{ pointerEvents: 'none' }}>
           <iframe
             src="https://www.youtube.com/embed/UE9q2qaW3Po?autoplay=1&mute=1&loop=1&playlist=UE9q2qaW3Po&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1"
             allow="autoplay; fullscreen"
@@ -715,7 +715,7 @@ function App() {
         </div>
 
         {/* Dark overlay for extra contrast */}
-        <div className="absolute" style={{ inset: '-10px', background: 'rgba(0,0,0,0.5)' }} />
+        <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.5)' }} />
 
         {/* Main hero content */}
         <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 py-6 md:py-16">
