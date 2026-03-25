@@ -718,9 +718,9 @@ function App() {
         <div className="absolute" style={{ inset: '-10px', background: 'rgba(0,0,0,0.5)' }} />
 
         {/* Main hero content */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 py-16">
+        <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 py-6 md:py-16">
           <div>
-            <h1 className="text-6xl md:text-8xl lg:text-8xl font-black leading-none tracking-tight text-white mb-12">
+            <h1 className="text-6xl md:text-8xl lg:text-8xl font-black leading-none tracking-tight text-white mb-6 md:mb-12">
               Let's transform<br />
               <span
                 style={{
@@ -738,7 +738,7 @@ function App() {
               </span><br />
               experiences
             </h1>
-            <div className="flex flex-col gap-8 border-t border-white/10 pt-10">
+            <div className="flex flex-col gap-6 border-t border-white/10 pt-6 md:pt-10">
               <p className="text-base text-gray-300 leading-relaxed font-light max-w-xl">
                 Hi! My name is Eugenia and I help organizations craft customer-centered services and products while empowering teams to lead meaningful change.
               </p>
