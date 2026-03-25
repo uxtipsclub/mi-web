@@ -672,7 +672,7 @@ function App() {
                     setIsMenuOpen(false)
                     setTimeout(() => {
                       const target = document.querySelector(item.href)
-                      if (target) target.scrollIntoView({ behavior: 'smooth' })
+                      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 64, behavior: 'smooth' })
                     }, 300)
                   }}
                   className="px-0 py-4 text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors border-b border-gray-100"
@@ -870,7 +870,7 @@ function App() {
                   <div>
                     <a
                       href="#contact-form"
-                      onClick={(e) => { e.preventDefault(); document.querySelector('#contact-form')?.scrollIntoView({ behavior: 'smooth' }) }}
+                      onClick={(e) => { e.preventDefault(); const t = document.querySelector('#contact-form'); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 64, behavior: 'smooth' }) }}
                       className="inline-block border border-black text-black px-8 py-4 font-black text-sm tracking-widest hover:bg-black hover:text-white transition-colors"
                     >
                       REQUEST PORTFOLIO →
