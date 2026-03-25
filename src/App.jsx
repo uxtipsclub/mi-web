@@ -834,23 +834,23 @@ function App() {
             {caseStudies.map((study, index) => (
               <div
                 key={study.id}
-                className={`grid md:grid-cols-2 gap-0 items-center border-b border-gray-200 py-16 ${index % 2 === 1 ? '' : ''}`}
+                className={`grid lg:grid-cols-2 gap-0 items-center border-b border-gray-200 py-16 ${index % 2 === 1 ? '' : ''}`}
               >
                 {/* Image */}
-                <div className={`${index % 2 === 1 ? 'md:order-2' : ''} px-0 md:pr-12`}>
+                <div className={`${index % 2 === 1 ? 'lg:order-2' : ''} px-0 lg:pr-12`}>
                   <div className="relative">
                     <span className="absolute top-4 left-4 z-10 text-xs font-black tracking-widest text-white bg-black px-3 py-1">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <div
-                      className={`w-full h-80 md:h-[460px] ${study.thumbnail.startsWith('/') ? 'object-cover' : study.thumbnail}`}
+                      className={`w-full h-80 lg:h-[460px] ${study.thumbnail.startsWith('/') ? 'object-cover' : study.thumbnail}`}
                       style={study.thumbnail.startsWith('/') ? { backgroundImage: `url(${study.thumbnail})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
                     />
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className={`${index % 2 === 1 ? 'md:order-1 md:pr-12' : 'md:pl-12'} mt-8 md:mt-0`}>
+                <div className={`${index % 2 === 1 ? 'lg:order-1 lg:pr-12' : 'lg:pl-12'} mt-8 lg:mt-0`}>
                   <p className="text-xs font-bold tracking-widest mb-4 text-purple-700">{study.category} · {study.year}</p>
                   <h3 className="text-4xl md:text-5xl font-black mb-6 text-black leading-tight">{study.title}</h3>
                   <p className="text-base text-gray-500 mb-8 leading-relaxed font-light">{study.overview}</p>
