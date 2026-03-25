@@ -199,7 +199,7 @@ function App() {
       solution: "I streamlined multilingual support workflows and built reporting practices using Kibana, GoodData, Salesforce, and Jira to monitor CX metrics and surface trends. I synthesized customer insights to directly inform product decisions for LATAM markets, led and mentored a regional Tier 1 & 2 support team, and launched Zendesk's first LATAM social media channels. I organized customer meetups across São Paulo, Buenos Aires, Santiago de Chile, and Montevideo to reduce adoption barriers and build community. I also partnered with major accounts including LATAM Airlines, Twitter, and Groupon, and trained clients across LATAM and Spain to build custom reports and KPIs using MAQL within GoodData.",
       results: [
         { metric: "+80%", description: "Boost in customer experience through optimized support workflows" },
-        { metric: "1 new office", description: "Opened in São Paulo as a result of LATAM market expansion. Clients: LATAM Airlines, Twitter, and Groupon" },
+        { metric: "São Paulo office", description: "Opened as LATAM grew — with key accounts like LATAM Airlines, Twitter, and Groupon under my management" },
       ],
       images: [
         { type: "bg-gradient-to-br from-green-500 to-teal-700", label: "LATAM Market Expansion" },
