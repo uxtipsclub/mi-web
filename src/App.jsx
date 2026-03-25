@@ -703,10 +703,8 @@ function App() {
               position: 'absolute',
               top: '50%',
               left: '50%',
-              width: '177.78vh',   /* 16:9 ratio */
-              height: '56.25vw',  /* 16:9 ratio */
-              minWidth: '100%',
-              minHeight: '100%',
+              width: 'max(100%, 177.78vh)',
+              height: 'max(100%, 56.25vw)',
               transform: 'translate(-50%, -50%)',
               filter: 'blur(2px) brightness(0.45)',
               border: 'none',
@@ -944,7 +942,7 @@ function App() {
               <p className="text-gray-400 text-lg font-light leading-relaxed mb-10">
                 I've also built an exclusive community with 200+ members, helping designers evolve into strategy, AI, and design leadership.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col lg:flex-row gap-4">
                 <a href="https://www.youtube.com/@UXTips" target="_blank" rel="noopener noreferrer" className="border border-purple-500 text-purple-400 px-8 py-4 font-black text-xs tracking-widest hover:bg-purple-700 hover:text-white hover:border-purple-700 transition-colors text-center">
                   WATCH ON YOUTUBE ↗
                 </a>
@@ -1102,7 +1100,7 @@ function App() {
             About<br />
             <span className="text-purple-700">me</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-16 mb-16 items-stretch">
+          <div className="grid lg:grid-cols-2 gap-16 mb-16 items-stretch">
             {/* Bio text — full */}
             <div className="flex flex-col justify-between">
               <div className="space-y-6">
@@ -1128,7 +1126,7 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="grid md:grid-cols-2 divide-x divide-gray-200 border border-gray-200">
+          <div className="grid lg:grid-cols-2 divide-x divide-gray-200 border border-gray-200">
             <div className="p-10 md:p-12">
               <h2 className="text-3xl md:text-4xl font-black text-black mb-10">Speaking &amp; Articles</h2>
               <ul className="space-y-0 divide-y divide-gray-100">
