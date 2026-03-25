@@ -24,8 +24,8 @@ function App() {
       setTimeout(() => {
         setHeroWordIndex(i => (i + 1) % heroWords.length)
         setHeroFading(false)
-      }, 500)
-    }, 2800)
+      }, 800)
+    }, 5000)
     return () => clearInterval(interval)
   }, [])
 
@@ -726,9 +726,12 @@ function App() {
                 style={{
                   color: heroWords[heroWordIndex].color,
                   display: 'inline-block',
+                  fontFamily: '"pollen-web", serif',
+                  fontSize: '1.4em',
+                  fontStyle: 'italic',
                   opacity: heroFading ? 0 : 1,
                   transform: heroFading ? 'translateY(12px)' : 'translateY(0)',
-                  transition: 'opacity 0.5s ease, transform 0.5s ease',
+                  transition: 'opacity 0.8s ease, transform 0.8s ease',
                 }}
               >
                 {heroWords[heroWordIndex].text}
@@ -782,7 +785,7 @@ function App() {
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-white mb-16">
             What clients<br />
-            <span className="text-purple-400">say</span>
+            <span style={{ color: '#4ade80', fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>say</span>
           </h2>
           <div className="grid md:grid-cols-3 divide-x divide-gray-800 border border-gray-800">
             {testimonials.map((testimonial, index) => (
@@ -827,7 +830,7 @@ function App() {
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             Latest<br />
-            <span className="text-purple-700">projects</span>
+            <span className="text-purple-700" style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>projects</span>
           </h2>
 
           <div className="space-y-0">
@@ -888,7 +891,7 @@ function App() {
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             How we can<br />
-            <span className="text-purple-700">work together</span>
+            <span className="text-purple-700" style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>work together</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-0">
             {services.map((service, index) => (
@@ -934,7 +937,7 @@ function App() {
           <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
             <h2 className="text-5xl md:text-7xl font-black leading-none text-white">
               Helping designers<br />
-              <span className="text-purple-400">level up</span><br />
+              <span style={{ color: '#5eead4', fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>level up</span><br />
               their careers
             </h2>
             <div>
@@ -1100,7 +1103,7 @@ function App() {
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             About<br />
-            <span className="text-purple-700">me</span>
+            <span className="text-purple-700" style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>me</span>
           </h2>
           <div className="grid lg:grid-cols-2 gap-16 mb-16 items-stretch">
             {/* Bio text — full */}
@@ -1151,7 +1154,7 @@ function App() {
           </div>
           <div className="grid lg:grid-cols-2 gap-0 lg:divide-x lg:divide-gray-200">
             <div className="lg:pr-16">
-              <h2 className="text-5xl md:text-7xl font-black leading-none tracking-tight text-black mb-4">Let's <span className="text-purple-700">talk</span></h2>
+              <h2 className="text-5xl md:text-7xl font-black leading-none tracking-tight text-black mb-4">Let's <span className="text-purple-700" style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>talk</span></h2>
               <p className="text-xl text-gray-500 font-light max-w-xl mb-12">Have a project in mind or want to explore how we can work together? Drop me a message.</p>
               {formStatus === 'success' ? (
                 <div className="border border-purple-200 bg-purple-50 px-8 py-12 text-center">
@@ -1268,7 +1271,7 @@ function App() {
       <footer id="contact" className="py-16 px-6 md:px-12 bg-black text-white border-t border-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-5xl md:text-7xl font-black text-white leading-none">Designing change<br /><span className="text-purple-400">that matters</span></h2>
+            <h2 className="text-5xl md:text-7xl font-black text-white leading-none">Designing change<br /><span style={{ color: '#4ade80', fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>that matters</span></h2>
           </div>
           <div className="border-t border-gray-800 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-600 text-xs tracking-wide text-center md:text-left flex flex-wrap items-center justify-center md:justify-start gap-x-1 gap-y-0.5">
