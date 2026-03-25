@@ -121,6 +121,27 @@ function App() {
       ndaNote: "Specific product visuals and detailed workflows are omitted in compliance with NDA."
     },
     {
+      id: 8,
+      slug: '/case_nestle_ux',
+      title: "Growing UX Maturity & Embedding Service Design at Nestlé",
+      category: "DesignOps & Strategy",
+      thumbnail: "/cases/cases_nestle_maturity.png",
+      year: "2021 - 2023",
+      client: "Nestlé",
+      overview: "I led a two-year initiative to establish UX as a core enterprise value at Nestlé IT — running assessments, building a community of practice, and integrating design into the Product Management curriculum.",
+      challenge: "UX practice at Nestlé IT was fragmented and undervalued: no shared maturity baseline, no structured roadmap for growth, and no community connecting designers across regions. Design was rarely included early enough in product decisions, and accessibility was not yet a recognized service offering. Without organizational buy-in, user-centered design could not scale.",
+      solution: "I applied the Nielsen Norman Group UX Maturity Framework to diagnose the organization across Culture, Strategy, Process, and Outcomes, then defined a structured growth roadmap. I established a cross-regional design community of practice through online and in-person events, developed UX Playbooks and guidelines, and integrated UX as a core pillar in Product Manager education across IT. I also facilitated a Design Hackathon — leading stakeholder workshops, creating Proto Personas and Service Blueprints, and introducing User Ecosystem Thinking to help teams design around the full employee experience.",
+      results: [
+        { metric: "+50%", description: "Increase in UX budget allocation secured" },
+        { metric: "1st", description: "UX metrics incorporated into Nestlé's Product Management Pillar" },
+      ],
+      images: [
+        { type: "bg-gradient-to-br from-red-500 to-orange-600", label: "UX Maturity Roadmap" },
+        { type: "bg-gradient-to-br from-orange-600 to-red-700", label: "Community of Practice" },
+        { type: "bg-gradient-to-br from-red-700 to-orange-500", label: "Design Hackathon" }
+      ]
+    },
+    {
       id: 6,
       slug: '/case_nestle_hr',
       title: "Empowering Nestlé Employees with a Self-Service HR Portal",
@@ -165,27 +186,6 @@ function App() {
       ]
     },
     */
-    {
-      id: 8,
-      slug: '/case_nestle_ux',
-      title: "Growing UX Maturity & Embedding Service Design at Nestlé",
-      category: "DesignOps & Strategy",
-      thumbnail: "/cases/cases_nestle_maturity.png",
-      year: "2021 - 2023",
-      client: "Nestlé",
-      overview: "I led a two-year initiative to establish UX as a core enterprise value at Nestlé IT — running assessments, building a community of practice, and integrating design into the Product Management curriculum.",
-      challenge: "UX practice at Nestlé IT was fragmented and undervalued: no shared maturity baseline, no structured roadmap for growth, and no community connecting designers across regions. Design was rarely included early enough in product decisions, and accessibility was not yet a recognized service offering. Without organizational buy-in, user-centered design could not scale.",
-      solution: "I applied the Nielsen Norman Group UX Maturity Framework to diagnose the organization across Culture, Strategy, Process, and Outcomes, then defined a structured growth roadmap. I established a cross-regional design community of practice through online and in-person events, developed UX Playbooks and guidelines, and integrated UX as a core pillar in Product Manager education across IT. I also facilitated a Design Hackathon — leading stakeholder workshops, creating Proto Personas and Service Blueprints, and introducing User Ecosystem Thinking to help teams design around the full employee experience.",
-      results: [
-        { metric: "+50%", description: "Increase in UX budget allocation secured" },
-        { metric: "1st", description: "UX metrics incorporated into Nestlé's Product Management Pillar" },
-      ],
-      images: [
-        { type: "bg-gradient-to-br from-red-500 to-orange-600", label: "UX Maturity Roadmap" },
-        { type: "bg-gradient-to-br from-orange-600 to-red-700", label: "Community of Practice" },
-        { type: "bg-gradient-to-br from-red-700 to-orange-500", label: "Design Hackathon" }
-      ]
-    },
     {
       id: 9,
       slug: '/case_zendesk_latam',
