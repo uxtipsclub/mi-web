@@ -870,6 +870,7 @@ function App() {
                   <div>
                     <a
                       href="#contact-form"
+                      onClick={(e) => { e.preventDefault(); document.querySelector('#contact-form')?.scrollIntoView({ behavior: 'smooth' }) }}
                       className="inline-block border border-black text-black px-8 py-4 font-black text-sm tracking-widest hover:bg-black hover:text-white transition-colors"
                     >
                       REQUEST PORTFOLIO →
