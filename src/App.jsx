@@ -111,7 +111,7 @@ function App() {
       solution: "I drove strategic UX leadership alongside Product Management, introduced and scaled iterative usability testing within Agile sprints (with findings tracked directly in Jira), and championed the adoption of TheyDo to align two previously siloed product teams. I also led the first DesignOps initiatives at LGT Bank — standardizing processes and introducing AI-powered tools for interview synthesis and rapid prototyping — while mentoring a team of designers and contributing hands-on to UI delivery using the SAP Design System.",
       results: [
         { metric: "-50%", description: "Duplicated work across previously siloed product teams" },
-        { metric: "1st", description: "Journey management framework at LGT, using TheyDo to align teams around user experience", link: "https://www.theydo.com" },
+        { metric: "1st", description: "Journey management framework at LGT, using TheyDo to align teams around user experience", link: "https://www.theydo.com", linkText: "TheyDo" },
       ],
       images: [
         { type: "bg-gradient-to-br from-slate-600 to-blue-800", label: "Platform Strategy" },
@@ -426,7 +426,7 @@ function App() {
                 {selectedCaseStudy.results.map((result, index) => (
                   <div key={index} className="p-10">
                     <h3 className="text-5xl md:text-6xl font-black mb-4 text-purple-400">{result.metric}</h3>
-                    <p className="text-sm text-gray-400 tracking-wide">{result.link ? <a href={result.link} target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-400 transition-colors">{result.description}</a> : result.description}</p>
+                    <p className="text-sm text-gray-400 tracking-wide">{result.link && result.linkText ? result.description.split(result.linkText).flatMap((part, i, arr) => i < arr.length - 1 ? [part, <a key={i} href={result.link} target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-400 transition-colors">{result.linkText}</a>] : [part]) : result.description}</p>
                   </div>
                 ))}
               </div>
@@ -878,7 +878,7 @@ function App() {
                     {study.results.slice(0, 2).map((result, rIndex) => (
                       <div key={rIndex} className="p-6">
                         <p className="text-3xl font-black text-purple-700 mb-1">{result.metric}</p>
-                        <p className="text-xs text-gray-500 tracking-wide">{result.link ? <a href={result.link} target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-700 transition-colors">{result.description}</a> : result.description}</p>
+                        <p className="text-xs text-gray-500 tracking-wide">{result.link && result.linkText ? result.description.split(result.linkText).flatMap((part, i, arr) => i < arr.length - 1 ? [part, <a key={i} href={result.link} target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-700 transition-colors">{result.linkText}</a>] : [part]) : result.description}</p>
                       </div>
                     ))}
                   </div>
