@@ -823,7 +823,7 @@ function App() {
       </section>
 
       {/* Portfolio */}
-      <section id="work" className="py-20 px-6 md:px-12 bg-white">
+      <section id="work" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
             <span className="text-xs font-bold tracking-widest text-purple-700">002 / WORK</span>
@@ -884,7 +884,7 @@ function App() {
       </section>
 
       {/* Services */}
-      <section id="services" className="py-20 px-6 md:px-12 bg-white">
+      <section id="services" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
             <span className="text-xs font-bold tracking-widest text-purple-700">003 / SERVICES</span>
@@ -932,7 +932,7 @@ function App() {
         `}</style>
 
         {/* Text content */}
-        <div className="max-w-7xl mx-auto px-12 md:px-16 pt-20 pb-16">
+        <div className="max-w-7xl mx-auto px-12 md:px-16 pt-5 lg:pt-20 pb-16">
           <span className="text-xs font-bold tracking-widest text-purple-400 mb-8 block">004 / COMMUNITY</span>
           <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
             <h2 className="text-5xl md:text-7xl font-black leading-none text-white">
@@ -1096,7 +1096,7 @@ function App() {
       */}
 
       {/* About */}
-      <section id="about" className="py-20 px-6 md:px-12 bg-white border-t border-gray-200">
+      <section id="about" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
             <span className="text-xs font-bold tracking-widest text-purple-700">005 / ABOUT</span>
@@ -1146,7 +1146,7 @@ function App() {
       </section>
 
       {/* Contact */}
-      <section id="contact-form" className="py-20 px-6 md:px-12 bg-gray-50 border-t border-gray-200">
+      <section id="contact-form" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-16 flex justify-between items-end">
             <span className="text-xs font-bold tracking-widest text-purple-700">006 / CONTACT</span>
