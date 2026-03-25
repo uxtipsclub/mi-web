@@ -302,7 +302,7 @@ function App() {
       const s = window.location.pathname
       const m = caseStudies.find(cs => cs.slug === s)
       setSelectedCaseStudy(m || null)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (m || s === '/') window.scrollTo({ top: 0, behavior: 'smooth' })
     }
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
