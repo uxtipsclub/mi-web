@@ -775,8 +775,8 @@ function App() {
 
             {/* Trusted by — inline in hero */}
             <div className="mt-16 pt-10 border-t border-white/10">
-              <p className="text-xs font-bold tracking-widest text-gray-500 mb-8">TRUSTED BY</p>
-              <div className="flex flex-wrap items-center gap-6">
+              <p className="text-xs font-bold tracking-widest text-gray-500 mb-8 lg:text-center">TRUSTED BY</p>
+              <div className="flex flex-wrap items-center gap-6 lg:justify-center">
                 {[
                   { name: "Zendesk", src: "/logos/zendesk.png" },
                   { name: "Nestlé", src: "/logos/nestle.png" },
