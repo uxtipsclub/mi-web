@@ -106,7 +106,7 @@ function App() {
       thumbnail: "/cases/cases_plancanvas.png",
       year: "2025",
       client: "Personal Project",
-      overview: "I designed and built PlanCanvas — an infinite canvas where calendars, notes, images, and goals come together across any timeline — going from concept to a working React/Next.js prototype in under two months, using Cursor and Claude as my AI development partners. I'm documenting the entire process live at my design community, uxtips.club.",
+      overview: "Traditional calendars trap your thinking inside tiny boxes. I designed and built PlanCanvas to break that — an infinite, zoomable canvas where calendars, notes, images, and goals live together without boundaries, letting visual thinkers plan across any timeline the way their mind actually works. From concept to a working React/Next.js prototype in under two months, with Cursor and Claude as my AI development partners. I'm documenting the entire journey live at uxtips.club.",
       results: [
         { metric: "0 → 1", description: "Full product built solo — strategy, UX design, and front-end code" },
         { metric: "~2 months", description: "From concept to working React/Next.js prototype using AI-assisted development" },
