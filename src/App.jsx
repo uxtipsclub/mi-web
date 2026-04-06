@@ -101,15 +101,15 @@ function App() {
     {
       id: 10,
       externalLink: "https://uxtips.club",
-      title: "From Design to Code — Building a Product Solo with AI",
+      title: "Designing & Shipping a Product Solo with AI",
       category: "AI-Assisted Product Development",
       thumbnail: "/cases/cases_plancanvas.png",
       year: "2025",
       client: "Personal Project",
-      overview: "Traditional calendars trap your thinking inside tiny boxes. I designed and built PlanCanvas to break that — an infinite, zoomable canvas where calendars, notes, images, and goals live together without boundaries, letting visual thinkers plan across any timeline the way their mind actually works. From concept to a working React/Next.js prototype in under two months, with Cursor and Claude as my AI development partners. I'm documenting the entire journey live at uxtips.club.",
+      overview: "What happens when designers stop handing off and start building?\n\nThis project is an exploration of AI-assisted product development as a new way of working. I created PlanCanvas, a flexible planning tool designed to break away from rigid calendar systems and better reflect how people actually think.\n\nUsing AI tools like Cursor and Claude, I moved fluidly between strategy, UX, and code, compressing what is traditionally a multi-role, multi-month process into a fast, iterative solo workflow.\n\nThis case study documents not just the product, but a shift in how digital products can be imagined and delivered — building in public at [uxtips.club](https://uxtips.club).",
       results: [
-        { metric: "0 → 1", description: "Full product built solo — strategy, UX design, and front-end code" },
-        { metric: "~2 months", description: "From concept to working React/Next.js prototype using AI-assisted development" },
+        { metric: "0 → 1", description: "From idea to working product" },
+        { metric: "New workflow", description: "AI-augmented product creation" },
       ],
       images: []
     },
@@ -889,7 +889,10 @@ function App() {
                 <div className={`${index % 2 === 1 ? 'lg:order-1 lg:pr-12' : 'lg:pl-12'} mt-8 lg:mt-0`}>
                   <p className="text-xs font-bold tracking-widest mb-4 text-purple-700">{study.category} · {study.year}</p>
                   <h3 className="text-4xl md:text-5xl font-black mb-6 text-black leading-tight">{study.title}</h3>
-                  <p className="text-base text-gray-500 mb-8 leading-relaxed font-light">{study.overview}</p>
+                  <div className="text-base text-gray-500 mb-8 leading-relaxed font-light space-y-3">{study.overview.split('\n\n').map((para, i) => {
+                    const parts = para.split(/\[([^\]]+)\]\(([^)]+)\)/)
+                    return <p key={i}>{parts.map((part, j) => j % 3 === 1 ? <a key={j} href={parts[j+1]} target="_blank" rel="noopener noreferrer" className="text-purple-700 underline hover:text-purple-900 transition-colors">{part}</a> : j % 3 === 0 ? part : null)}</p>
+                  })}</div>
 
                   <div className="grid grid-cols-2 gap-0 mb-8 border border-gray-200 divide-x divide-gray-200">
                     {study.results.slice(0, 2).map((result, rIndex) => (
@@ -902,7 +905,7 @@ function App() {
 
                   <div>
                     {study.externalLink
-                      ? <a href={study.externalLink} target="_blank" rel="noopener noreferrer" className="inline-block border border-black text-black px-8 py-4 font-black text-sm tracking-widest hover:bg-black hover:text-white transition-colors">SEE MY PROCESS LIVE ↗</a>
+                      ? <><a href={study.externalLink} target="_blank" rel="noopener noreferrer" className="inline-block border border-black text-black px-8 py-4 font-black text-sm tracking-widest hover:bg-black hover:text-white transition-colors">SEE HOW IT'S BEING BUILT ↗</a><p className="text-xs text-gray-400 tracking-wide mt-2">Case study coming soon</p></>
                       : <>
                           <a href="#contact-form" className="inline-block border border-black text-black px-8 py-4 font-black text-sm tracking-widest hover:bg-black hover:text-white transition-colors">REQUEST PORTFOLIO →</a>
                           <p className="text-xs text-gray-400 tracking-wide mt-2">Case study coming soon</p>
