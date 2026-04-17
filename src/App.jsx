@@ -9,10 +9,48 @@ function App() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [formStatus, setFormStatus] = useState('idle') // idle | submitting | success | error
   const [pageTransition, setPageTransition] = useState(false)
+  const [showExperienceLab, setShowExperienceLab] = useState(false)
+  const [showWaitlistPopup, setShowWaitlistPopup] = useState(false)
+  const [waitlistForm, setWaitlistForm] = useState({ name: '', email: '', courses: [], consent: false })
+  const [waitlistStatus, setWaitlistStatus] = useState('idle') // idle | submitting | success | error
   const lastScrollY = useRef(0)
 
-  const goToSection = (href, fromMobileMenu = false) => {
+  const openExperienceLab = (fromMobileMenu = false) => {
     if (fromMobileMenu) setIsMenuOpen(false)
+    setPageTransition(true)
+    setTimeout(() => {
+      setShowExperienceLab(true)
+      window.history.pushState({ page: 'experience-lab' }, '', '/experience-lab')
+      window.scrollTo({ top: 0 })
+      requestAnimationFrame(() => setPageTransition(false))
+    }, fromMobileMenu ? 300 : 50)
+  }
+
+  const closeExperienceLab = () => {
+    setShowExperienceLab(false)
+    window.history.pushState({}, '', '/')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const goToSection = (href, fromMobileMenu = false) => {
+    if (href === '/experience-lab') { openExperienceLab(fromMobileMenu); return }
+    if (fromMobileMenu) setIsMenuOpen(false)
+    if (showExperienceLab) {
+      setPageTransition(true)
+      setTimeout(() => {
+        setShowExperienceLab(false)
+        window.history.pushState({}, '', '/')
+        setTimeout(() => {
+          const target = document.querySelector(href)
+          if (target) {
+            const offset = window.innerWidth >= 1024 ? 0 : 64
+            window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - offset })
+          }
+          requestAnimationFrame(() => setPageTransition(false))
+        }, 50)
+      }, fromMobileMenu ? 300 : 0)
+      return
+    }
     setPageTransition(true)
     setTimeout(() => {
       const target = document.querySelector(href)
@@ -68,8 +106,8 @@ function App() {
     { name: 'Work', href: '#work' },
     { name: 'Services', href: '#services' },
     { name: 'Community', href: '#community' },
+    { name: 'Experience Lab', href: '/experience-lab' },
     { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact-form' },
   ]
 
   const speakingItems = [
@@ -326,11 +364,13 @@ function App() {
     const slug = window.location.pathname
     const match = caseStudies.find(cs => cs.slug === slug)
     if (match) setSelectedCaseStudy(match)
+    if (slug === '/experience-lab') setShowExperienceLab(true)
 
     const handlePopState = () => {
       const s = window.location.pathname
       const m = caseStudies.find(cs => cs.slug === s)
       setSelectedCaseStudy(m || null)
+      setShowExperienceLab(s === '/experience-lab')
       if (m || (s === '/' && !window.location.hash)) window.scrollTo({ top: 0, behavior: 'smooth' })
     }
     window.addEventListener('popstate', handlePopState)
@@ -582,6 +622,434 @@ function App() {
         },
       ]
     }
+  }
+
+  const experienceLabTrainings = [
+    {
+      id: 1,
+      title: 'Journey Mapping',
+      status: 'available',
+      link: 'https://luma.com/uxtips',
+      meta: [
+        { label: 'Objetivo', value: 'Visualizar la experiencia del cliente de extremo a extremo' },
+        { label: 'Profesor', value: 'Eugenia Jongewaard' },
+        { label: 'Modalidad', value: 'Live online' },
+        { label: 'Idioma', value: 'Español' },
+        { label: 'Contenido', value: 'Ejercicios prácticos y frameworks' },
+        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+      ],
+    },
+    {
+      id: 2,
+      title: 'Intro to Service Design',
+      status: 'waitlist',
+      link: null,
+      meta: [
+        { label: 'Objetivo', value: 'Diseñar servicios que funcionen para usuarios y organizaciones' },
+        { label: 'Profesor', value: 'Eugenia Jongewaard' },
+        { label: 'Modalidad', value: 'Live online' },
+        { label: 'Idioma', value: 'Español' },
+        { label: 'Contenido', value: 'Casos reales y metodología aplicada' },
+        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+      ],
+    },
+    {
+      id: 3,
+      title: 'Journey Management',
+      status: 'available',
+      link: 'https://luma.com/uxtips',
+      meta: [
+        { label: 'Objetivo', value: 'Gestionar journeys como activo estratégico del negocio' },
+        { label: 'Profesor', value: 'Eugenia Jongewaard' },
+        { label: 'Modalidad', value: 'Live online' },
+        { label: 'Idioma', value: 'Español' },
+        { label: 'Contenido', value: 'Framework de journey management con TheyDo' },
+        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+      ],
+    },
+    {
+      id: 4,
+      title: 'Service Design and AI',
+      status: 'waitlist',
+      link: null,
+      meta: [
+        { label: 'Objetivo', value: 'Integrar IA en la práctica del diseño de servicios' },
+        { label: 'Profesor', value: 'Eugenia Jongewaard' },
+        { label: 'Modalidad', value: 'Live online' },
+        { label: 'Idioma', value: 'Español' },
+        { label: 'Contenido', value: 'Herramientas de IA aplicadas al service design' },
+        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+      ],
+    },
+  ]
+
+
+  if (showExperienceLab) {
+    return (
+      <div className="min-h-screen bg-white">
+
+        {/* Page transition overlay */}
+        <div
+          className="fixed inset-0 z-[45] bg-white pointer-events-none"
+          style={{
+            opacity: pageTransition ? 1 : 0,
+            transition: pageTransition ? 'none' : 'opacity 0.6s ease',
+          }}
+        />
+
+        {/* Waitlist Popup */}
+        {showWaitlistPopup && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4" onClick={() => { setShowWaitlistPopup(false); setWaitlistStatus('idle') }}>
+            <div className="absolute inset-0 bg-black/50" />
+            <div className="relative bg-white w-full max-w-lg max-h-[90vh] overflow-y-auto p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => { setShowWaitlistPopup(false); setWaitlistStatus('idle') }}
+                className="absolute top-5 right-5 text-black hover:text-purple-700 transition-colors"
+                aria-label="Close"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {waitlistStatus === 'success' ? (
+                <div className="py-8 text-center">
+                  <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-black text-black mb-2">You're on the list!</h3>
+                  <p className="text-gray-500 font-light">I'll reach out as soon as the session opens. Talk soon.</p>
+                </div>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-black text-black mb-2">Upcoming sessions</h2>
+                  <p className="text-gray-500 font-light text-sm leading-relaxed mb-6">
+                    Be the first to know when new sessions launch and get exclusive early access. Leave your details and choose the courses that interest you.
+                  </p>
+
+                  <form
+                    onSubmit={async (e) => {
+                      e.preventDefault()
+                      if (!waitlistForm.consent) return
+                      setWaitlistStatus('submitting')
+                      try {
+                        const res = await fetch('/api/subscribe', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({
+                            email: waitlistForm.email,
+                            name: waitlistForm.name,
+                            courses: waitlistForm.courses,
+                          }),
+                        })
+                        if (res.ok) {
+                          setWaitlistStatus('success')
+                          setWaitlistForm({ name: '', email: '', courses: [], consent: false })
+                        } else {
+                          setWaitlistStatus('error')
+                        }
+                      } catch {
+                        setWaitlistStatus('error')
+                      }
+                    }}
+                    className="flex flex-col gap-4"
+                  >
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      required
+                      value={waitlistForm.email}
+                      onChange={(e) => setWaitlistForm(f => ({ ...f, email: e.target.value }))}
+                      className="w-full px-4 py-3 text-sm border border-gray-200 bg-gray-50 text-black placeholder-gray-400 focus:outline-none focus:border-purple-700"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      value={waitlistForm.name}
+                      onChange={(e) => setWaitlistForm(f => ({ ...f, name: e.target.value }))}
+                      className="w-full px-4 py-3 text-sm border border-gray-200 bg-gray-50 text-black placeholder-gray-400 focus:outline-none focus:border-purple-700"
+                    />
+
+                    <div className="pt-2">
+                      <p className="text-sm font-black text-black mb-3">Which courses interest you?</p>
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                        {experienceLabTrainings.map((t) => (
+                          <label key={t.id} className="flex items-start gap-2 cursor-pointer group">
+                            <input
+                              type="checkbox"
+                              className="mt-0.5 w-4 h-4 border border-gray-300 accent-purple-700 cursor-pointer"
+                              checked={waitlistForm.courses.includes(t.title)}
+                              onChange={(e) => setWaitlistForm(f => ({
+                                ...f,
+                                courses: e.target.checked
+                                  ? [...f.courses, t.title]
+                                  : f.courses.filter(c => c !== t.title)
+                              }))}
+                            />
+                            <span className="text-sm text-gray-700 group-hover:text-black transition-colors leading-tight">{t.title}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <label className="flex items-start gap-2 cursor-pointer pt-2 border-t border-gray-100">
+                      <input
+                        type="checkbox"
+                        required
+                        className="mt-0.5 w-4 h-4 border border-gray-300 accent-purple-700 cursor-pointer"
+                        checked={waitlistForm.consent}
+                        onChange={(e) => setWaitlistForm(f => ({ ...f, consent: e.target.checked }))}
+                      />
+                      <span className="text-xs text-gray-500 leading-relaxed">
+                        I accept the privacy policy and agree to receive communications from Eugenia Jongewaard about Experience Lab sessions.
+                      </span>
+                    </label>
+
+                    {waitlistStatus === 'error' && (
+                      <p className="text-xs text-red-600">Something went wrong. Try again or email hola@eugeniajongewaard.com</p>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={waitlistStatus === 'submitting' || !waitlistForm.consent}
+                      className="w-full bg-purple-700 text-white py-4 font-black text-sm tracking-widest hover:bg-purple-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                    >
+                      {waitlistStatus === 'submitting' ? 'SENDING...' : 'JOIN THE WAITING LIST →'}
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Header */}
+        <header className={`fixed top-0 w-full bg-white z-50 border-b border-gray-200 transition-transform duration-300 ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="flex items-center justify-between h-16">
+              <a href="#" aria-label="Eugenia Jongewaard — Go to home" onClick={(e) => { e.preventDefault(); closeExperienceLab() }}>
+                <img src="/eugenia_logo_main.png" alt="Eugenia Jongewaard - Home" className="h-8 w-auto" />
+              </a>
+
+              {/* Desktop Nav */}
+              <nav className="hidden lg:flex items-center divide-x divide-gray-300 border-x border-gray-300">
+                {menuItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => { e.preventDefault(); goToSection(item.href) }}
+                    className={`px-6 py-[18px] font-medium text-sm tracking-widest transition-colors ${item.href === '/experience-lab' ? 'text-purple-700' : 'text-black hover:text-purple-700'}`}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-6 py-[18px] text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors">
+                  Newsletter ↗
+                </a>
+                <a href="https://calendar.app.google/66NHCC4gRmeURyKt8" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-[18px] bg-purple-700 text-white font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Book a call ↗
+                </a>
+              </nav>
+
+              {/* Mobile Burger */}
+              <button
+                onClick={toggleMenu}
+                className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-nav-lab"
+              >
+                <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </button>
+            </div>
+
+            {/* Mobile Menu */}
+            <nav id="mobile-nav-lab" aria-label="Mobile navigation" className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="flex flex-col border-t border-gray-200">
+                {menuItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => { e.preventDefault(); goToSection(item.href, true) }}
+                    className={`px-0 py-4 font-medium text-sm tracking-widest transition-colors border-b border-gray-100 ${item.href === '/experience-lab' ? 'text-purple-700' : 'text-black hover:text-purple-700'}`}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-0 py-4 text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors border-b border-gray-100 block">
+                  Newsletter ↗
+                </a>
+                <a href="https://calendar.app.google/66NHCC4gRmeURyKt8" target="_blank" rel="noopener noreferrer" className="my-4 flex items-center gap-2 bg-purple-700 text-white px-6 py-3 font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors text-left">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Book a call ↗
+                </a>
+              </div>
+            </nav>
+          </div>
+        </header>
+
+        <div className="pt-16">
+
+          {/* Hero */}
+          <section className="px-6 md:px-12 pt-16 pb-16 border-b border-gray-200">
+            <div className="max-w-7xl mx-auto">
+              <span className="text-xs font-bold tracking-widest text-purple-700 block mb-6">EXPERIENCE LAB</span>
+              <h1 className="text-5xl md:text-8xl font-black leading-none mb-6 text-black">
+                Shaping the next<br />
+                generation of<br />
+                <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7', fontSize: '1em' }}>Experience Leaders</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-500 max-w-3xl font-light leading-relaxed">
+                Learn how to design, manage, and scale end-to-end experiences across products and services.
+              </p>
+            </div>
+          </section>
+
+          {/* Training Cards */}
+          <section className="px-6 md:px-12 py-16 border-b border-gray-200">
+            <div className="max-w-7xl mx-auto">
+              <div className="mb-10">
+                <span className="text-xs font-bold tracking-widest text-purple-700 block mb-2">TRAININGS</span>
+                <h2 className="text-3xl md:text-4xl font-black text-black">
+                  Upcoming <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7', fontSize: '1.1em' }}>sessions</span>
+                </h2>
+              </div>
+              <div className="flex flex-col">
+                {experienceLabTrainings.map((training, idx) => (
+                  <div key={training.id} className={`flex flex-col md:flex-row border border-gray-200 ${idx !== 0 ? 'mt-12' : ''}`}>
+                    {/* Image */}
+                    <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '380px' }}>
+                      <div className="w-full h-full" style={{
+                        minHeight: '380px',
+                        background: [
+                          'linear-gradient(160deg, #0f0c29 0%, #302b63 50%, #24243e 100%)',
+                          'linear-gradient(160deg, #134e5e 0%, #71b280 100%)',
+                          'linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)',
+                          'linear-gradient(160deg, #3d0c02 0%, #a83232 50%, #f7971e 100%)',
+                        ][idx]
+                      }} />
+                    </div>
+
+                    {/* Content */}
+                    <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-8">
+                      <div>
+                        <h3 className="text-4xl md:text-5xl font-black text-black leading-none mb-8">{training.title}</h3>
+                        <div className="grid grid-cols-2 gap-x-8 gap-y-0 divide-y divide-gray-100">
+                          {training.meta.map((field, i) => (
+                            <div key={i} className="py-4 border-t border-gray-100 first:border-t-0 [&:nth-child(2)]:border-t-0">
+                              <p className="text-xs text-gray-400 mb-1">{field.label}</p>
+                              <p className="text-sm text-black font-medium">{field.value}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t border-gray-100">
+                        {training.status === 'available' ? (
+                          <a
+                            href={training.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block border border-black text-black px-8 py-4 font-black text-sm tracking-widest hover:bg-black hover:text-white transition-colors"
+                          >
+                            REGISTER ↗
+                          </a>
+                        ) : (
+                          <button
+                            onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
+                            className="inline-block border border-purple-700 text-purple-700 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
+                          >
+                            JOIN WAITING LIST →
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+
+          {/* Waitlist CTA */}
+          <section id="lab-waitlist-form" className="px-6 md:px-12 py-24 border-t border-gray-200">
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="text-xs font-bold tracking-widest text-purple-700 block mb-4">STAY UPDATED</span>
+              <h2 className="text-4xl md:text-6xl font-black text-black mb-6">
+                Don't miss the<br />
+                <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7', fontSize: '1em' }}>next session</span>
+              </h2>
+              <p className="text-gray-500 font-light leading-relaxed mb-10 text-lg max-w-xl mx-auto">
+                Be the first to know when new sessions launch. No spam — just the important stuff.
+              </p>
+              <button
+                onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
+                className="inline-block bg-purple-700 text-white px-12 py-5 font-black text-sm tracking-widest hover:bg-purple-800 transition-colors"
+              >
+                JOIN THE WAITING LIST →
+              </button>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="py-16 px-6 md:px-12 bg-black text-white border-t border-gray-900">
+            <div className="max-w-7xl mx-auto">
+              <div className="mb-12">
+                <h2 className="text-5xl md:text-7xl font-black text-white leading-none">Designing change<br /><span style={{ color: '#4ade80', fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>that matters</span></h2>
+              </div>
+
+              {/* Socials + Contact */}
+              <div className="flex flex-col md:flex-row items-start gap-10 mb-12 pb-12 border-b border-gray-800">
+                <div>
+                  <p className="text-xs font-bold tracking-widest text-purple-400 mb-4">COME SAY HI</p>
+                  <div className="flex gap-4">
+                    <a href="https://www.linkedin.com/in/eugeniajongewaard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                      className="w-12 h-12 border border-purple-700 flex items-center justify-center text-purple-400 hover:bg-purple-700 hover:text-white transition-colors">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/uxtipsonline/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                      className="w-12 h-12 border border-purple-700 flex items-center justify-center text-purple-400 hover:bg-purple-700 hover:text-white transition-colors">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@UXTips" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+                      className="w-12 h-12 border border-purple-700 flex items-center justify-center text-purple-400 hover:bg-purple-700 hover:text-white transition-colors">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs font-bold tracking-widest text-purple-400 mb-4">GET IN TOUCH</p>
+                  <button
+                    onClick={() => { closeExperienceLab(); setTimeout(() => { const el = document.querySelector('#contact-form'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 400) }}
+                    className="inline-block border border-purple-700 text-purple-400 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
+                  >
+                    CONTACT ME →
+                  </button>
+                  <p className="text-xs text-gray-600 mt-3">or email hola (@) eugeniajongewaard.com</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p className="text-gray-600 text-xs tracking-wide text-center md:text-left flex flex-wrap items-center justify-center md:justify-start gap-x-1 gap-y-0.5">
+                  <span>Made with Cursor, Claude,</span>
+                  <span>and intentional human thinking with</span>
+                  <span className="inline-flex items-center gap-1">
+                    <svg className="w-3.5 h-3.5 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    from Barcelona
+                  </span>
+                </p>
+                <p className="text-gray-700 text-xs tracking-widest">© 2026 EUGENIA JONGEWAARD. ALL RIGHTS RESERVED.</p>
+              </div>
+            </div>
+          </footer>
+
+        </div>
+      </div>
+    )
   }
 
   if (selectedLegalPage) {
