@@ -105,8 +105,8 @@ function App() {
   const menuItems = [
     { name: 'Work', href: '#work' },
     { name: 'Services', href: '#services' },
-    { name: 'Community', href: '#community' },
     { name: 'Experience Lab', href: '/experience-lab' },
+    { name: 'Community', href: '#community' },
     { name: 'About', href: '#about' },
   ]
 
@@ -436,7 +436,7 @@ function App() {
             <div className="max-w-7xl mx-auto">
               {selectedCaseStudy.thumbnail.startsWith('/')
                 ? <img src={selectedCaseStudy.thumbnail} alt={selectedCaseStudy.title} className="w-full h-96 md:h-[600px] object-cover rounded-lg" />
-                : <div className={`w-full h-96 md:h-[600px] rounded-lg ${selectedCaseStudy.thumbnail}`} />
+                : <div className={`w-full h-48 md:h-[600px] rounded-lg ${selectedCaseStudy.thumbnail}`} />
               }
             </div>
           </section>
@@ -464,7 +464,7 @@ function App() {
                 <div className="grid md:grid-cols-3 gap-6">
                   {selectedCaseStudy.images.map((image, index) => (
                     <div key={index}>
-                      <div className={`w-full h-72 rounded-lg ${image.type} mb-4`} />
+                      <div className={`w-full h-36 md:h-72 rounded-lg ${image.type} mb-4`} />
                       <p className="text-xs font-bold tracking-widest text-gray-500">{image.label}</p>
                     </div>
                   ))}
@@ -816,7 +816,7 @@ function App() {
                       disabled={waitlistStatus === 'submitting' || !waitlistForm.consent}
                       className="w-full bg-purple-700 text-white py-4 font-black text-sm tracking-widest hover:bg-purple-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
                     >
-                      {waitlistStatus === 'submitting' ? 'SENDING...' : 'JOIN THE WAITING LIST →'}
+                      {waitlistStatus === 'submitting' ? 'SENDING...' : 'JOIN THE WAITING LIST'}
                     </button>
                   </form>
                 </>
@@ -899,10 +899,10 @@ function App() {
           <section className="px-6 md:px-12 pt-16 pb-16 border-b border-gray-200">
             <div className="max-w-7xl mx-auto">
               <span className="text-xs font-bold tracking-widest text-purple-700 block mb-6">EXPERIENCE LAB</span>
-              <h1 className="text-5xl md:text-8xl font-black leading-none mb-6 text-black">
+              <h1 className="text-5xl md:text-7xl font-black leading-none mb-6 text-black">
                 Shaping the next<br />
                 generation of<br />
-                <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7', fontSize: '1em' }}>Experience Leaders</span>
+                <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7', fontSize: '1.2em' }}>Experience Leaders</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-500 max-w-3xl font-light leading-relaxed">
                 Learn how to design, manage, and scale end-to-end experiences across products and services.
@@ -914,9 +914,8 @@ function App() {
           <section className="px-6 md:px-12 py-16 border-b border-gray-200">
             <div className="max-w-7xl mx-auto">
               <div className="mb-10">
-                <span className="text-xs font-bold tracking-widest text-purple-700 block mb-2">TRAININGS</span>
                 <h2 className="text-3xl md:text-4xl font-black text-black">
-                  Upcoming <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7', fontSize: '1.1em' }}>sessions</span>
+                  Upcoming sessions
                 </h2>
               </div>
               <div className="flex flex-col">
@@ -971,7 +970,7 @@ function App() {
                             onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
                             className="inline-block border border-purple-700 text-purple-700 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
                           >
-                            JOIN THE WAITING LIST →
+                            JOIN THE WAITING LIST
                           </button>
                         )}
                       </div>
@@ -1296,7 +1295,7 @@ function App() {
       <section className="py-20 px-6 md:px-12 bg-black text-white border-b border-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-800 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-400">001 / TESTIMONIALS</span>
+            <span className="text-xs font-bold tracking-widest text-purple-400">TESTIMONIALS</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-white mb-16">
             What clients<br />
@@ -1343,7 +1342,7 @@ function App() {
       <section id="work" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">002 / WORK</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">WORK</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             Latest<br />
@@ -1363,7 +1362,7 @@ function App() {
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <div
-                      className={`w-full h-80 lg:h-[460px] rounded-lg ${study.thumbnail.startsWith('/') ? 'object-cover' : study.thumbnail}`}
+                      className={`w-full rounded-lg ${study.thumbnail.startsWith('/') ? 'h-80 lg:h-[460px] object-cover' : 'h-40 lg:h-[460px] ' + study.thumbnail}`}
                       style={study.thumbnail.startsWith('/') ? { backgroundImage: `url(${study.thumbnail})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}}
                     />
                   </div>
@@ -1407,7 +1406,7 @@ function App() {
       <section id="services" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">003 / SERVICES</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">SERVICES</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             How we can<br />
@@ -1453,7 +1452,7 @@ function App() {
 
         {/* Text content */}
         <div className="max-w-7xl mx-auto px-12 md:px-16 pt-5 lg:pt-20 pb-16">
-          <span className="text-xs font-bold tracking-widest text-purple-400 mb-8 block">004 / COMMUNITY</span>
+          <span className="text-xs font-bold tracking-widest text-purple-400 mb-8 block">COMMUNITY</span>
           <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
             <h2 className="text-5xl md:text-7xl font-black leading-none text-white">
               Helping designers<br />
@@ -1588,7 +1587,7 @@ function App() {
       <section className="py-20 px-6 md:px-12 bg-gray-50 border-t border-gray-200">
         <div className="max-w-4xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-16 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">008 / FAQ</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">FAQ</span>
             <span className="text-xs text-gray-400 tracking-widest">FREQUENTLY ASKED</span>
           </div>
           <div className="divide-y divide-gray-200 border-t border-gray-200">
@@ -1619,7 +1618,7 @@ function App() {
       <section id="about" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-12 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">005 / ABOUT</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">ABOUT</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black leading-none text-black mb-16">
             About<br />
@@ -1670,7 +1669,7 @@ function App() {
       <section id="contact-form" className="pt-5 pb-20 lg:py-20 px-6 md:px-12 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="border-b border-gray-200 pb-6 mb-16 flex justify-between items-end">
-            <span className="text-xs font-bold tracking-widest text-purple-700">006 / CONTACT</span>
+            <span className="text-xs font-bold tracking-widest text-purple-700">CONTACT</span>
             <span className="text-xs text-gray-400 tracking-widest">LET'S WORK TOGETHER</span>
           </div>
           <div className="grid lg:grid-cols-2 gap-0 lg:divide-x lg:divide-gray-200">
