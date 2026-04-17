@@ -556,7 +556,7 @@ function App() {
     },
     'privacy-policy': {
       title: 'Privacy Policy',
-      label: 'POLÍTICA DE PRIVACIDAD — GDPR',
+      label: 'PRIVACY POLICY — GDPR',
       content: [
         {
           heading: 'Who is responsible for your data',
@@ -594,7 +594,7 @@ function App() {
     },
     'cookie-policy': {
       title: 'Cookie Policy',
-      label: 'POLÍTICA DE COOKIES',
+      label: 'COOKIE POLICY',
       content: [
         {
           heading: 'What are cookies',
@@ -629,14 +629,14 @@ function App() {
       id: 1,
       title: 'Journey Mapping',
       status: 'available',
-      link: 'https://luma.com/uxtips',
+      link: 'https://luma.com/xipxvb4a',
       meta: [
-        { label: 'Objetivo', value: 'Visualizar la experiencia del cliente de extremo a extremo' },
-        { label: 'Profesor', value: 'Eugenia Jongewaard' },
-        { label: 'Modalidad', value: 'Live online' },
-        { label: 'Idioma', value: 'Español' },
-        { label: 'Contenido', value: 'Ejercicios prácticos y frameworks' },
-        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+        { label: 'Goal', value: 'Visualize the end-to-end customer experience' },
+        { label: 'Instructor', value: 'Eugenia Jongewaard' },
+        { label: 'Format', value: 'Live online' },
+        { label: 'Language', value: 'Spanish' },
+        { label: 'Date', value: 'Saturday, April 25 · 15:30 (2h) CEST' },
+        { label: 'Resources', value: 'Templates and materials included' },
       ],
     },
     {
@@ -645,26 +645,26 @@ function App() {
       status: 'waitlist',
       link: null,
       meta: [
-        { label: 'Objetivo', value: 'Diseñar servicios que funcionen para usuarios y organizaciones' },
-        { label: 'Profesor', value: 'Eugenia Jongewaard' },
-        { label: 'Modalidad', value: 'Live online' },
-        { label: 'Idioma', value: 'Español' },
-        { label: 'Contenido', value: 'Casos reales y metodología aplicada' },
-        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+        { label: 'Goal', value: 'Design services that work for users and organizations' },
+        { label: 'Instructor', value: 'Eugenia Jongewaard' },
+        { label: 'Format', value: 'Live online' },
+        { label: 'Language', value: 'Spanish' },
+        { label: 'Date', value: 'To be confirmed' },
+        { label: 'Resources', value: 'Templates and materials included' },
       ],
     },
     {
       id: 3,
       title: 'Journey Management',
       status: 'available',
-      link: 'https://luma.com/uxtips',
+      link: 'https://luma.com/6miraqzp',
       meta: [
-        { label: 'Objetivo', value: 'Gestionar journeys como activo estratégico del negocio' },
-        { label: 'Profesor', value: 'Eugenia Jongewaard' },
-        { label: 'Modalidad', value: 'Live online' },
-        { label: 'Idioma', value: 'Español' },
-        { label: 'Contenido', value: 'Framework de journey management con TheyDo' },
-        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+        { label: 'Goal', value: 'Manage journeys as a strategic business asset' },
+        { label: 'Instructor', value: 'Eugenia Jongewaard' },
+        { label: 'Format', value: 'Live online' },
+        { label: 'Language', value: 'Spanish' },
+        { label: 'Date', value: 'Thursday, May 21 · 18:30 (2h) CEST' },
+        { label: 'Resources', value: 'Templates and materials included' },
       ],
     },
     {
@@ -673,12 +673,12 @@ function App() {
       status: 'waitlist',
       link: null,
       meta: [
-        { label: 'Objetivo', value: 'Integrar IA en la práctica del diseño de servicios' },
-        { label: 'Profesor', value: 'Eugenia Jongewaard' },
-        { label: 'Modalidad', value: 'Live online' },
-        { label: 'Idioma', value: 'Español' },
-        { label: 'Contenido', value: 'Herramientas de IA aplicadas al service design' },
-        { label: 'Recursos', value: 'Templates y materiales incluidos' },
+        { label: 'Goal', value: 'Integrate AI into service design practice' },
+        { label: 'Instructor', value: 'Eugenia Jongewaard' },
+        { label: 'Format', value: 'Live online' },
+        { label: 'Language', value: 'Spanish' },
+        { label: 'Date', value: 'To be confirmed' },
+        { label: 'Resources', value: 'Templates and materials included' },
       ],
     },
   ]
@@ -938,7 +938,15 @@ function App() {
                     {/* Content */}
                     <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-8">
                       <div>
-                        <h3 className="text-4xl md:text-5xl font-black text-black leading-none mb-8">{training.title}</h3>
+                        <h3 className="text-4xl md:text-5xl font-black leading-none mb-8">
+                          {training.link && training.status === 'available' ? (
+                            <a href={training.link} target="_blank" rel="noopener noreferrer" className="text-black hover:text-purple-700 transition-colors">
+                              {training.title}
+                            </a>
+                          ) : (
+                            <span className="text-black">{training.title}</span>
+                          )}
+                        </h3>
                         <div className="grid grid-cols-2 gap-x-8 gap-y-0 divide-y divide-gray-100">
                           {training.meta.map((field, i) => (
                             <div key={i} className="py-4 border-t border-gray-100 first:border-t-0 [&:nth-child(2)]:border-t-0">
@@ -963,7 +971,7 @@ function App() {
                             onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
                             className="inline-block border border-purple-700 text-purple-700 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
                           >
-                            JOIN WAITING LIST →
+                            JOIN THE WAITING LIST →
                           </button>
                         )}
                       </div>
@@ -986,12 +994,20 @@ function App() {
               <p className="text-gray-500 font-light leading-relaxed mb-10 text-lg max-w-xl mx-auto">
                 Be the first to know when new sessions launch. No spam — just the important stuff.
               </p>
-              <button
-                onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
-                className="inline-block bg-purple-700 text-white px-12 py-5 font-black text-sm tracking-widest hover:bg-purple-800 transition-colors"
-              >
-                JOIN THE WAITING LIST →
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
+                  className="inline-block bg-purple-700 text-white px-12 py-5 font-black text-sm tracking-widest hover:bg-purple-800 transition-colors"
+                >
+                  JOIN THE WAITING LIST
+                </button>
+                <button
+                  onClick={() => { closeExperienceLab(); setTimeout(() => { const el = document.querySelector('#contact-form'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 400) }}
+                  className="inline-block border border-purple-700 text-purple-700 px-12 py-5 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
+                >
+                  BRING IT TO YOUR TEAM
+                </button>
+              </div>
             </div>
           </section>
 
