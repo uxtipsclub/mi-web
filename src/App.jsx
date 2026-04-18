@@ -1,5 +1,144 @@
 import { useState, useEffect, useRef } from 'react'
 
+function JourneyMappingSVG() {
+  return (
+    <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',display:'block',background:'#fdf5ff'}}>
+      <polyline points="70,265 155,148 235,208 315,112" fill="none" stroke="#dea8f0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="70" cy="265" fill="none" stroke="#b44fdd" strokeWidth="1.2">
+        <animate attributeName="r" from="7" to="36" dur="3s" repeatCount="indefinite" begin="0s"/>
+        <animate attributeName="opacity" values="0.6;0" dur="3s" repeatCount="indefinite" begin="0s"/>
+      </circle>
+      <circle cx="155" cy="148" fill="none" stroke="#b44fdd" strokeWidth="1.2">
+        <animate attributeName="r" from="7" to="36" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+        <animate attributeName="opacity" values="0.6;0" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+      </circle>
+      <circle cx="235" cy="208" fill="none" stroke="#b44fdd" strokeWidth="1.2">
+        <animate attributeName="r" from="7" to="36" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+        <animate attributeName="opacity" values="0.6;0" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+      </circle>
+      <circle cx="315" cy="112" fill="none" stroke="#b44fdd" strokeWidth="1.2">
+        <animate attributeName="r" from="7" to="36" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+        <animate attributeName="opacity" values="0.6;0" dur="3s" repeatCount="indefinite" begin="1.8s"/>
+      </circle>
+      <circle cx="70" cy="265" r="6" fill="white" stroke="#b44fdd" strokeWidth="2"/>
+      <circle cx="155" cy="148" r="6" fill="white" stroke="#dea8f0" strokeWidth="2"/>
+      <circle cx="235" cy="208" r="7" fill="#b44fdd"/>
+      <circle cx="315" cy="112" r="6" fill="white" stroke="#b44fdd" strokeWidth="2"/>
+    </svg>
+  )
+}
+
+function IntroServiceDesignSVG() {
+  return (
+    <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',display:'block',background:'#faf9ff'}}>
+      <circle cx="200" cy="190" r="130" fill="none" stroke="#d4c4f0" strokeWidth="1.5"/>
+      <circle cx="200" cy="190" r="78" fill="none" stroke="#b09de0" strokeWidth="1.5"/>
+      <circle cx="200" cy="190" r="34" fill="none" stroke="#7c52c8" strokeWidth="1.5"/>
+      <circle cx="200" cy="190" r="7" fill="#7c52c8"/>
+      {[0, 1.8, 3.6].map((delay, i) => (
+        <circle key={i} cx="200" cy="190" fill="none" stroke="#7c52c8" strokeWidth="1">
+          <animate attributeName="r" from="7" to="145" dur="5.4s" repeatCount="indefinite" begin={`${delay}s`}/>
+          <animate attributeName="opacity" values="0.5;0.15;0" dur="5.4s" repeatCount="indefinite" begin={`${delay}s`}/>
+        </circle>
+      ))}
+    </svg>
+  )
+}
+
+function JourneyManagementSVG() {
+  const size = 46
+  const gap = 10
+  const cols = 5
+  const rows = 5
+  const totalW = cols * size + (cols - 1) * gap
+  const totalH = rows * size + (rows - 1) * gap
+  const ox = (400 - totalW) / 2
+  const oy = (380 - totalH) / 2
+  const highlighted = new Set(['1-3', '2-1', '3-4'])
+  const cells = []
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = ox + c * (size + gap)
+      const y = oy + r * (size + gap)
+      const isH = highlighted.has(`${r}-${c}`)
+      cells.push({ x, y, isH, cx: x + size / 2, cy: y + size / 2 })
+    }
+  }
+  return (
+    <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',display:'block',background:'#f0f1fa'}}>
+      {cells.map(({ x, y, isH }, i) => (
+        <rect key={i} x={x} y={y} width={size} height={size}
+          fill={isH ? '#5a62b8' : 'none'}
+          stroke={isH ? '#5a62b8' : '#c0c5e8'}
+          strokeWidth="1.5"
+        />
+      ))}
+      {cells.filter(c => c.isH).map(({ cx, cy }, i) => (
+        <circle key={i} cx={cx} cy={cy} fill="none" stroke="#5a62b8" strokeWidth="1.5">
+          <animate attributeName="r" from="5" to="52" dur="3.5s" repeatCount="indefinite" begin={`${i * 1}s`}/>
+          <animate attributeName="opacity" values="0.6;0" dur="3.5s" repeatCount="indefinite" begin={`${i * 1}s`}/>
+        </circle>
+      ))}
+    </svg>
+  )
+}
+
+function ServiceDesignAISVG() {
+  const dots = []
+  const cols = 9
+  const rows = 8
+  const spacingX = 400 / (cols + 1)
+  const spacingY = 380 / (rows + 1)
+  const highlightedSet = new Set(['3-4', '3-5', '4-4', '4-5', '4-3', '3-3'])
+  for (let r = 1; r <= rows; r++) {
+    for (let c = 1; c <= cols; c++) {
+      dots.push({ cx: c * spacingX, cy: r * spacingY, isH: highlightedSet.has(`${r}-${c}`), key: `${r}-${c}` })
+    }
+  }
+  return (
+    <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',display:'block',background:'#f0f5fa'}}>
+      {dots.map(({ cx, cy, isH, key }) => (
+        <circle key={key} cx={cx} cy={cy} r={isH ? 5 : 2.5} fill={isH ? '#4a7ab5' : '#b8d0e8'} opacity={isH ? 1 : 0.55}/>
+      ))}
+      {[0, 1.3, 2.6].map((delay, i) => (
+        <circle key={i} cx="200" cy="190" fill="none" stroke="#4a7ab5" strokeWidth="1.5">
+          <animate attributeName="r" from="8" to="165" dur="4s" repeatCount="indefinite" begin={`${delay}s`}/>
+          <animate attributeName="opacity" values="0.5;0" dur="4s" repeatCount="indefinite" begin={`${delay}s`}/>
+        </circle>
+      ))}
+    </svg>
+  )
+}
+
+function ExperienceMetricsSVG() {
+  const barData = [
+    { h: 80 }, { h: 140 }, { h: 100 }, { h: 190, highlighted: true }, { h: 60 }, { h: 120 },
+  ]
+  const barW = 40
+  const gap = 20
+  const bottomY = 310
+  const totalW = barData.length * barW + (barData.length - 1) * gap
+  const startX = (400 - totalW) / 2
+  const hiIdx = 3
+  const rippleCx = startX + hiIdx * (barW + gap) + barW / 2
+  const rippleCy = bottomY - barData[hiIdx].h
+  return (
+    <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%',display:'block',background:'#f0f7f7'}}>
+      {barData.map(({ h, highlighted }, i) => (
+        <rect key={i} x={startX + i * (barW + gap)} y={bottomY - h} width={barW} height={h}
+          fill={highlighted ? '#4a8f8a' : '#b8d9d7'}
+        />
+      ))}
+      {[0, 1, 2].map((i) => (
+        <circle key={i} cx={rippleCx} cy={rippleCy} fill="none" stroke="#4a8f8a" strokeWidth="1.5">
+          <animate attributeName="r" from="5" to="70" dur="3s" repeatCount="indefinite" begin={`${i}s`}/>
+          <animate attributeName="opacity" values="0.6;0" dur="3s" repeatCount="indefinite" begin={`${i}s`}/>
+        </circle>
+      ))}
+    </svg>
+  )
+}
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
@@ -634,8 +773,10 @@ function App() {
       format: 'Online',
       language: 'Spanish',
       description: 'Learn to visualize the end-to-end customer experience using proven frameworks and hands-on exercises.',
+      longDescription: 'In this session you\'ll discover how to map journeys correctly, avoid the most common mistakes, and transform isolated maps into living, strategic tools that generate real impact.\n\nAnd the best part: this isn\'t just another workshop. It\'s a space where you\'ll learn from real corporate cases, walking away with tools, materials, and practical advice to apply with your team right after the session.',
       date: 'Saturday, April 25 · 15:30 (2h) CEST',
       instructor: 'Eugenia Jongewaard',
+      Illustration: JourneyMappingSVG,
     },
     {
       id: 2,
@@ -648,6 +789,7 @@ function App() {
       description: 'Discover how to design services that work for both users and organizations through real cases and applied methodology.',
       date: 'To be confirmed',
       instructor: 'Eugenia Jongewaard',
+      Illustration: IntroServiceDesignSVG,
     },
     {
       id: 3,
@@ -658,8 +800,10 @@ function App() {
       format: 'Online',
       language: 'Spanish',
       description: 'Learn to manage customer journeys as a strategic business asset and drive continuous experience improvement.',
+      longDescription: 'Many organizations create valuable journey maps… but then don\'t know how to use them to guide decisions, prioritize initiatives, or align teams. This is where Journey Management comes in.\n\nIn this workshop you\'ll learn how to move from static maps to a continuous practice that connects user insights with real product, service, and business decisions.\n\nAnd the best part: we won\'t just cover the concept. We\'ll work with the most widely used tools for managing customer journeys in complex organizations.',
       date: 'Thursday, May 21 · 18:30 (2h) CEST',
       instructor: 'Eugenia Jongewaard',
+      Illustration: JourneyManagementSVG,
     },
     {
       id: 4,
@@ -672,6 +816,7 @@ function App() {
       description: 'Explore how to integrate AI tools into your service design practice and scale insights across your organization.',
       date: 'To be confirmed',
       instructor: 'Eugenia Jongewaard',
+      Illustration: ServiceDesignAISVG,
     },
     {
       id: 5,
@@ -684,6 +829,7 @@ function App() {
       description: 'Cover common experience measurement metrics and methods, the tools organizations use, and how to connect experience data to business outcomes.',
       date: 'To be confirmed',
       instructor: 'Eugenia Jongewaard',
+      Illustration: ExperienceMetricsSVG,
     },
   ]
 
@@ -926,21 +1072,23 @@ function App() {
                 {experienceLabTrainings.filter(t => t.status === 'available').map((training, idx) => (
                   <div key={training.id} className={`flex flex-col md:flex-row border border-gray-200 ${idx !== 0 ? 'mt-12' : ''}`}>
                     {/* Image */}
-                    <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '380px' }}>
-                      <div className="w-full h-full" style={{
-                        minHeight: '380px',
-                        background: [
-                          'linear-gradient(160deg, #0f0c29 0%, #302b63 50%, #24243e 100%)',
-                          'linear-gradient(160deg, #134e5e 0%, #71b280 100%)',
-                          'linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)',
-                          'linear-gradient(160deg, #3d0c02 0%, #a83232 50%, #f7971e 100%)',
-                          'linear-gradient(160deg, #1a1a2e 0%, #2d1b69 50%, #0f3460 100%)',
-                        ][idx]
-                      }} />
+                    <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '266px' }}>
+                      {training.Illustration ? <training.Illustration /> : (
+                        <div className="w-full h-full" style={{
+                          minHeight: '266px',
+                          background: [
+                            'linear-gradient(160deg, #0f0c29 0%, #302b63 50%, #24243e 100%)',
+                            'linear-gradient(160deg, #134e5e 0%, #71b280 100%)',
+                            'linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)',
+                            'linear-gradient(160deg, #3d0c02 0%, #a83232 50%, #f7971e 100%)',
+                            'linear-gradient(160deg, #1a1a2e 0%, #2d1b69 50%, #0f3460 100%)',
+                          ][idx]
+                        }} />
+                      )}
                     </div>
 
                     {/* Content */}
-                    <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-8">
+                    <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-6">
                       <div>
                         <h3 className="text-4xl md:text-5xl font-black leading-none mb-5">
                           {training.link && training.status === 'available' ? (
@@ -954,15 +1102,26 @@ function App() {
 
                         {/* Pills */}
                         <div className="flex flex-wrap gap-2 mb-6">
-                          {[training.tools, training.format, training.language].map((tag) => (
-                            <span key={tag} className="px-3 py-1 rounded-full border border-gray-300 text-xs text-gray-600 font-medium">
-                              {tag}
-                            </span>
-                          ))}
+                          {[training.language, training.tools, training.format].map((tag) => {
+                            const isLang = tag === training.language
+                            const langClass = training.language === 'Spanish'
+                              ? 'border-purple-200 bg-purple-50 text-purple-600'
+                              : 'border-teal-200 bg-teal-50 text-teal-600'
+                            return (
+                              <span key={tag} className={`px-3 py-1 rounded-full border text-xs font-medium ${isLang ? langClass : 'border-gray-300 text-gray-600'}`}>
+                                {tag}
+                              </span>
+                            )
+                          })}
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm text-gray-500 leading-relaxed mb-8 line-clamp-2">{training.description}</p>
+                        {training.longDescription
+                          ? training.longDescription.split('\n\n').map((para, i) => (
+                              <p key={i} className="text-sm text-gray-500 leading-relaxed mb-4">{para}</p>
+                            ))
+                          : <p className="text-sm text-gray-500 leading-relaxed mb-8 line-clamp-2">{training.description}</p>
+                        }
 
                         {/* Date & Instructor */}
                         <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
@@ -1015,19 +1174,21 @@ function App() {
                 {experienceLabTrainings.filter(t => t.status === 'waitlist').map((training, idx) => (
                   <div key={training.id} className={`flex flex-col md:flex-row border border-gray-200 ${idx !== 0 ? 'mt-12' : ''}`}>
                     {/* Image */}
-                    <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '380px' }}>
-                      <div className="w-full h-full" style={{
-                        minHeight: '380px',
-                        background: [
-                          'linear-gradient(160deg, #134e5e 0%, #71b280 100%)',
-                          'linear-gradient(160deg, #3d0c02 0%, #a83232 50%, #f7971e 100%)',
-                          'linear-gradient(160deg, #1a1a2e 0%, #2d1b69 50%, #0f3460 100%)',
-                        ][idx]
-                      }} />
+                    <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '266px' }}>
+                      {training.Illustration ? <training.Illustration /> : (
+                        <div className="w-full h-full" style={{
+                          minHeight: '266px',
+                          background: [
+                            'linear-gradient(160deg, #134e5e 0%, #71b280 100%)',
+                            'linear-gradient(160deg, #3d0c02 0%, #a83232 50%, #f7971e 100%)',
+                            'linear-gradient(160deg, #1a1a2e 0%, #2d1b69 50%, #0f3460 100%)',
+                          ][idx]
+                        }} />
+                      )}
                     </div>
 
                     {/* Content */}
-                    <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-8">
+                    <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-6">
                       <div>
                         <h3 className="text-4xl md:text-5xl font-black leading-none mb-5">
                           <span className="text-black">{training.title}</span>
@@ -1035,15 +1196,26 @@ function App() {
 
                         {/* Pills */}
                         <div className="flex flex-wrap gap-2 mb-6">
-                          {[training.tools, training.format, training.language].map((tag) => (
-                            <span key={tag} className="px-3 py-1 rounded-full border border-gray-300 text-xs text-gray-600 font-medium">
-                              {tag}
-                            </span>
-                          ))}
+                          {[training.language, training.tools, training.format].map((tag) => {
+                            const isLang = tag === training.language
+                            const langClass = training.language === 'Spanish'
+                              ? 'border-purple-200 bg-purple-50 text-purple-600'
+                              : 'border-teal-200 bg-teal-50 text-teal-600'
+                            return (
+                              <span key={tag} className={`px-3 py-1 rounded-full border text-xs font-medium ${isLang ? langClass : 'border-gray-300 text-gray-600'}`}>
+                                {tag}
+                              </span>
+                            )
+                          })}
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm text-gray-500 leading-relaxed mb-8 line-clamp-2">{training.description}</p>
+                        {training.longDescription
+                          ? training.longDescription.split('\n\n').map((para, i) => (
+                              <p key={i} className="text-sm text-gray-500 leading-relaxed mb-4">{para}</p>
+                            ))
+                          : <p className="text-sm text-gray-500 leading-relaxed mb-8 line-clamp-2">{training.description}</p>
+                        }
 
                         {/* Date & Instructor */}
                         <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
