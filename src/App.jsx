@@ -673,6 +673,18 @@ function App() {
       date: 'To be confirmed',
       instructor: 'Eugenia Jongewaard',
     },
+    {
+      id: 5,
+      title: 'Experience Metrics',
+      status: 'waitlist',
+      link: null,
+      tools: 'Zoom & Miro',
+      format: 'Online',
+      language: 'English',
+      description: 'Cover common experience measurement metrics and methods, the tools organizations use, and how to connect experience data to business outcomes.',
+      date: 'To be confirmed',
+      instructor: 'Eugenia Jongewaard',
+    },
   ]
 
 
@@ -911,7 +923,7 @@ function App() {
                 </h2>
               </div>
               <div className="flex flex-col">
-                {experienceLabTrainings.map((training, idx) => (
+                {experienceLabTrainings.filter(t => t.status === 'available').map((training, idx) => (
                   <div key={training.id} className={`flex flex-col md:flex-row border border-gray-200 ${idx !== 0 ? 'mt-12' : ''}`}>
                     {/* Image */}
                     <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '380px' }}>
@@ -922,6 +934,7 @@ function App() {
                           'linear-gradient(160deg, #134e5e 0%, #71b280 100%)',
                           'linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)',
                           'linear-gradient(160deg, #3d0c02 0%, #a83232 50%, #f7971e 100%)',
+                          'linear-gradient(160deg, #1a1a2e 0%, #2d1b69 50%, #0f3460 100%)',
                         ][idx]
                       }} />
                     </div>
@@ -982,6 +995,76 @@ function App() {
                             JOIN THE WAITING LIST
                           </button>
                         )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* In the pipeline */}
+          <section className="px-6 md:px-12 py-16 border-b border-gray-200">
+            <div className="max-w-7xl mx-auto">
+              <div className="mb-10">
+                <h2 className="text-3xl md:text-4xl font-black text-black">
+                  In the pipeline
+                </h2>
+              </div>
+              <div className="flex flex-col">
+                {experienceLabTrainings.filter(t => t.status === 'waitlist').map((training, idx) => (
+                  <div key={training.id} className={`flex flex-col md:flex-row border border-gray-200 ${idx !== 0 ? 'mt-12' : ''}`}>
+                    {/* Image */}
+                    <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '380px' }}>
+                      <div className="w-full h-full" style={{
+                        minHeight: '380px',
+                        background: [
+                          'linear-gradient(160deg, #134e5e 0%, #71b280 100%)',
+                          'linear-gradient(160deg, #3d0c02 0%, #a83232 50%, #f7971e 100%)',
+                          'linear-gradient(160deg, #1a1a2e 0%, #2d1b69 50%, #0f3460 100%)',
+                        ][idx]
+                      }} />
+                    </div>
+
+                    {/* Content */}
+                    <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-8">
+                      <div>
+                        <h3 className="text-4xl md:text-5xl font-black leading-none mb-5">
+                          <span className="text-black">{training.title}</span>
+                        </h3>
+
+                        {/* Pills */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {[training.tools, training.format, training.language].map((tag) => (
+                            <span key={tag} className="px-3 py-1 rounded-full border border-gray-300 text-xs text-gray-600 font-medium">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-sm text-gray-500 leading-relaxed mb-8 line-clamp-2">{training.description}</p>
+
+                        {/* Date & Instructor */}
+                        <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
+                          <div className="py-4">
+                            <p className="text-xs text-gray-400 mb-1">Date</p>
+                            <p className="text-sm text-black font-medium">{training.date}</p>
+                          </div>
+                          <div className="py-4 border-l border-gray-100 pl-8">
+                            <p className="text-xs text-gray-400 mb-1">Instructor</p>
+                            <p className="text-sm text-black font-medium">{training.instructor}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t border-gray-100">
+                        <button
+                          onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
+                          className="inline-block border border-purple-700 text-purple-700 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
+                        >
+                          JOIN THE WAITING LIST
+                        </button>
                       </div>
                     </div>
                   </div>
