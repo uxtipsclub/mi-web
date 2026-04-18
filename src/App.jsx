@@ -848,7 +848,7 @@ function App() {
                 <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-6 py-[18px] text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors">
                   Newsletter ↗
                 </a>
-                <a href="https://calendar.app.google/66NHCC4gRmeURyKt8" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-[18px] bg-purple-700 text-white font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors">
+                <a href="https://cal.com/eugenia-jongewaard" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-[18px] bg-purple-700 text-white font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors">
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                   Book a call ↗
                 </a>
@@ -884,7 +884,7 @@ function App() {
                 <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-0 py-4 text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors border-b border-gray-100 block">
                   Newsletter ↗
                 </a>
-                <a href="https://calendar.app.google/66NHCC4gRmeURyKt8" target="_blank" rel="noopener noreferrer" className="my-4 flex items-center gap-2 bg-purple-700 text-white px-6 py-3 font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors text-left">
+                <a href="https://cal.com/eugenia-jongewaard" target="_blank" rel="noopener noreferrer" className="my-4 flex items-center gap-2 bg-purple-700 text-white px-6 py-3 font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors text-left">
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                   Book a call ↗
                 </a>
@@ -1161,7 +1161,7 @@ function App() {
               <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-6 py-[18px] text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors">
                 Newsletter ↗
               </a>
-              <a href="https://calendar.app.google/66NHCC4gRmeURyKt8" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-[18px] bg-purple-700 text-white font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors">
+              <a href="https://cal.com/eugenia-jongewaard" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-[18px] bg-purple-700 text-white font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 Book a call ↗
               </a>
@@ -1197,7 +1197,7 @@ function App() {
               <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-0 py-4 text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors border-b border-gray-100 block">
                 Newsletter ↗
               </a>
-              <a href="https://calendar.app.google/66NHCC4gRmeURyKt8" target="_blank" rel="noopener noreferrer" className="my-4 flex items-center gap-2 bg-purple-700 text-white px-6 py-3 font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors text-left">
+              <a href="https://cal.com/eugenia-jongewaard" target="_blank" rel="noopener noreferrer" className="my-4 flex items-center gap-2 bg-purple-700 text-white px-6 py-3 font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors text-left">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 Book a call ↗
               </a>
