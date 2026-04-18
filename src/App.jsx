@@ -630,56 +630,48 @@ function App() {
       title: 'Journey Mapping',
       status: 'available',
       link: 'https://luma.com/xipxvb4a',
-      meta: [
-        { label: 'Goal', value: 'Visualize the end-to-end customer experience' },
-        { label: 'Instructor', value: 'Eugenia Jongewaard' },
-        { label: 'Format', value: 'Live online' },
-        { label: 'Language', value: 'Spanish' },
-        { label: 'Date', value: 'Saturday, April 25 · 15:30 (2h) CEST' },
-        { label: 'Resources', value: 'Templates and materials included' },
-      ],
+      tools: 'Zoom & Miro',
+      format: 'Online',
+      language: 'Spanish',
+      description: 'Learn to visualize the end-to-end customer experience using proven frameworks and hands-on exercises.',
+      date: 'Saturday, April 25 · 15:30 (2h) CEST',
+      instructor: 'Eugenia Jongewaard',
     },
     {
       id: 2,
       title: 'Intro to Service Design',
       status: 'waitlist',
       link: null,
-      meta: [
-        { label: 'Goal', value: 'Design services that work for users and organizations' },
-        { label: 'Instructor', value: 'Eugenia Jongewaard' },
-        { label: 'Format', value: 'Live online' },
-        { label: 'Language', value: 'Spanish' },
-        { label: 'Date', value: 'To be confirmed' },
-        { label: 'Resources', value: 'Templates and materials included' },
-      ],
+      tools: 'Zoom & Miro',
+      format: 'Online',
+      language: 'Spanish',
+      description: 'Discover how to design services that work for both users and organizations through real cases and applied methodology.',
+      date: 'To be confirmed',
+      instructor: 'Eugenia Jongewaard',
     },
     {
       id: 3,
       title: 'Journey Management',
       status: 'available',
       link: 'https://luma.com/6miraqzp',
-      meta: [
-        { label: 'Goal', value: 'Manage journeys as a strategic business asset' },
-        { label: 'Instructor', value: 'Eugenia Jongewaard' },
-        { label: 'Format', value: 'Live online' },
-        { label: 'Language', value: 'Spanish' },
-        { label: 'Date', value: 'Thursday, May 21 · 18:30 (2h) CEST' },
-        { label: 'Resources', value: 'Templates and materials included' },
-      ],
+      tools: 'Zoom & Miro',
+      format: 'Online',
+      language: 'Spanish',
+      description: 'Learn to manage customer journeys as a strategic business asset and drive continuous experience improvement.',
+      date: 'Thursday, May 21 · 18:30 (2h) CEST',
+      instructor: 'Eugenia Jongewaard',
     },
     {
       id: 4,
       title: 'Service Design and AI',
       status: 'waitlist',
       link: null,
-      meta: [
-        { label: 'Goal', value: 'Integrate AI into service design practice' },
-        { label: 'Instructor', value: 'Eugenia Jongewaard' },
-        { label: 'Format', value: 'Live online' },
-        { label: 'Language', value: 'Spanish' },
-        { label: 'Date', value: 'To be confirmed' },
-        { label: 'Resources', value: 'Templates and materials included' },
-      ],
+      tools: 'Zoom & Miro',
+      format: 'Online',
+      language: 'Spanish',
+      description: 'Explore how to integrate AI tools into your service design practice and scale insights across your organization.',
+      date: 'To be confirmed',
+      instructor: 'Eugenia Jongewaard',
     },
   ]
 
@@ -937,7 +929,7 @@ function App() {
                     {/* Content */}
                     <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-8">
                       <div>
-                        <h3 className="text-4xl md:text-5xl font-black leading-none mb-8">
+                        <h3 className="text-4xl md:text-5xl font-black leading-none mb-5">
                           {training.link && training.status === 'available' ? (
                             <a href={training.link} target="_blank" rel="noopener noreferrer" className="text-black hover:text-purple-700 transition-colors">
                               {training.title}
@@ -946,15 +938,32 @@ function App() {
                             <span className="text-black">{training.title}</span>
                           )}
                         </h3>
-                        <div className="grid grid-cols-2 gap-x-8 gap-y-0 divide-y divide-gray-100">
-                          {training.meta.map((field, i) => (
-                            <div key={i} className="py-4 border-t border-gray-100 first:border-t-0 [&:nth-child(2)]:border-t-0">
-                              <p className="text-xs text-gray-400 mb-1">{field.label}</p>
-                              <p className="text-sm text-black font-medium">{field.value}</p>
-                            </div>
+
+                        {/* Pills */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {[training.tools, training.format, training.language].map((tag) => (
+                            <span key={tag} className="px-3 py-1 rounded-full border border-gray-300 text-xs text-gray-600 font-medium">
+                              {tag}
+                            </span>
                           ))}
                         </div>
+
+                        {/* Description */}
+                        <p className="text-sm text-gray-500 leading-relaxed mb-8 line-clamp-2">{training.description}</p>
+
+                        {/* Date & Instructor */}
+                        <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
+                          <div className="py-4">
+                            <p className="text-xs text-gray-400 mb-1">Date</p>
+                            <p className="text-sm text-black font-medium">{training.date}</p>
+                          </div>
+                          <div className="py-4 border-l border-gray-100 pl-8">
+                            <p className="text-xs text-gray-400 mb-1">Instructor</p>
+                            <p className="text-sm text-black font-medium">{training.instructor}</p>
+                          </div>
+                        </div>
                       </div>
+
                       <div className="pt-4 border-t border-gray-100">
                         {training.status === 'available' ? (
                           <a
