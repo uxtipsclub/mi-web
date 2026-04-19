@@ -427,40 +427,46 @@ function App() {
 
   const services = [
     {
-      title: "Product & Experience Design",
-      subtitle: "0→1",
-      description: "Identifying product opportunities, prioritizing high-impact bets, and testing solutions through research and rapid experimentation.",
-      features: ["Product Opportunity Mapping", "High-Impact Prioritization", "UX Research", "Rapid Prototyping & Testing"]
+      title: "Find & validate your next growth bet",
+      subtitle: "From idea to evidence",
+      description: "Most product investments fail because they're built on assumptions. I help you identify the highest-value opportunities, test them fast, and ship with confidence.",
+      features: ["Identify where the real product opportunity is", "Prioritize bets based on user evidence, not opinions", "Move from insight to prototype in weeks, not months"],
+      tag: "This is for you if: You're launching something new or need to validate a direction before investing further."
     },
     {
-      title: "Product Adoption & Growth",
-      subtitle: "Retention & Scale",
-      description: "Designing onboarding, feedback loops, Voice of Customer programs, and customer insight systems to improve adoption and scale product value.",
-      features: ["Onboarding Design", "Voice of Customer (VoC)", "Customer Insight Systems", "Feedback Loop Design"]
+      title: "From sign-up to lasting relationship",
+      subtitle: "Adoption & lifetime value",
+      description: "Acquiring customers is expensive. Losing them is worse. I design the onboarding, feedback loops, and insight systems that increase adoption and reduce churn.",
+      features: ["Design onboarding that drives activation, not drop-off", "Build Voice of Customer programs that surface what matters", "Turn customer insights into retention levers"],
+      tag: "This is for you if: You're seeing drop-off after sign-up, churn is too high, or your teams don't know why customers leave."
     },
     {
-      title: "Service Design & Journey Management",
-      subtitle: "Experience Operations",
-      description: "Applying service design methods to align teams around customer journeys and enabling organizations to continuously monitor and improve experiences.",
-      features: ["End-to-End Journey Mapping", "Service Blueprinting", "Experience Operations", "Cross-team Alignment"]
+      title: "Align teams around what customers actually experience",
+      subtitle: "From silos to shared direction",
+      description: "When teams work in silos, customers feel the gaps. I map end-to-end journeys and create shared models so teams stop duplicating effort and start delivering coherent experiences.",
+      features: ["Map the real customer journey across touchpoints and teams", "Create a shared framework so product, ops, and support move together", "Turn journey mapping into an ongoing practice, not a one-off exercise"],
+      tag: "This is for you if: Your teams build in isolation, the customer experience feels fragmented, or your journey maps sit in a drawer."
     },
     {
-      title: "AI-Augmented Experience Strategy",
-      subtitle: "Insight at Scale",
-      description: "Helping organizations leverage AI to continuously understand customer behavior, generate insights from qualitative and quantitative data, and inform product decisions at scale.",
-      features: ["AI-Powered Insight Generation", "Qualitative & Quantitative Synthesis at Scale", "Behavioral & Experience Intelligence", "AI-Enabled Design & Research Operations"]
+      title: "Make faster, smarter product decisions with AI",
+      subtitle: "From data overload to actionable insight",
+      description: "You're sitting on customer data you're not using. I help you leverage AI to synthesize signals at scale, so teams spot patterns faster and prioritize with evidence.",
+      features: ["Synthesize interviews, surveys, and support data with AI", "Generate insights without months of manual analysis", "Connect experience data to product priorities"],
+      tag: "This is for you if: Research cycles are too slow, your team is drowning in unstructured data, or you want to scale insights without scaling headcount."
     },
     {
-      title: "Experience Strategy & Governance",
-      subtitle: "Vision & Measurement",
-      description: "Defining the experience vision, principles, and measurement frameworks that align product and business decisions around the customer.",
-      features: ["Experience Vision & Principles", "Governance Frameworks", "Experience Measurement", "CX Metrics & KPIs"]
+      title: "Connect experience quality to business performance",
+      subtitle: "Measure what matters",
+      description: "If you can't measure experience, you can't manage it. I define the metrics and governance that make CX a board-level indicator, not a design team's side project.",
+      features: ["Define experience KPIs tied to business outcomes", "Align product and business decisions around a shared experience vision", "Make CX performance visible to leadership"],
+      tag: "This is for you if: You know experience matters but can't prove it to leadership, or you need a framework to connect CX to revenue."
     },
     {
-      title: "UX Capability Building & Maturity",
-      subtitle: "Org Enablement",
-      description: "Raising UX maturity across organizations through assessments, playbooks, design communities, and embedding user-centered thinking into product team education.",
-      features: ["UX Maturity Assessment", "UX Playbooks & Guidelines", "Design Community of Practice", "Product Manager Education"]
+      title: "Make user-centered thinking the way your org works",
+      subtitle: "Lasting capability, not a one-off workshop",
+      description: "Training one team isn't enough. I raise design capability across your product organization so user-centered thinking becomes how you operate, not something you outsource.",
+      features: ["Assess where your organization stands on UX maturity", "Build playbooks and guidelines teams will actually use", "Embed UX into Product Manager education and culture"],
+      tag: "This is for you if: UX is inconsistent across teams, design gets brought in too late, or you want to scale user-centered thinking beyond the design department."
     }
   ]
 
@@ -1685,13 +1691,18 @@ function App() {
                 <h3 className="text-2xl font-black mb-1 text-black group-hover:text-white transition-colors duration-300">{service.title}</h3>
                 <p className="text-xs font-bold tracking-widest mb-6 text-gray-400 group-hover:text-purple-300 transition-colors duration-300">{service.subtitle}</p>
                 <p className="text-sm leading-relaxed mb-8 text-gray-500 group-hover:text-purple-100 transition-colors duration-300">{service.description}</p>
-                <ul className="space-y-0 divide-y divide-gray-100 group-hover:divide-purple-600">
+                <ul className="space-y-0 divide-y divide-gray-100 group-hover:divide-purple-600 mb-6">
                   {service.features.map((feature, fIndex) => (
                     <li key={fIndex} className="py-4 text-sm tracking-wide text-gray-600 group-hover:text-purple-100 transition-colors duration-300">
                       {feature}
                     </li>
                   ))}
                 </ul>
+                {service.tag && (
+                  <div className="mt-2 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg group-hover:bg-purple-50 group-hover:border-purple-200 transition-colors duration-300">
+                    <p className="text-sm text-gray-600 leading-relaxed group-hover:text-purple-700 transition-colors duration-300">{service.tag}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
