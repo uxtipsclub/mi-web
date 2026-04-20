@@ -141,7 +141,6 @@ function ExperienceMetricsSVG() {
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [openFaq, setOpenFaq] = useState(null)
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null)
   const [selectedLegalPage, setSelectedLegalPage] = useState(null)
   const [navVisible, setNavVisible] = useState(true)
@@ -221,7 +220,6 @@ function App() {
   }, [])
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-  const toggleFaq = (index) => setOpenFaq(openFaq === index ? null : index)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -425,69 +423,63 @@ function App() {
     }
   ]
 
-  const services = [
+  const serviceGroups = [
     {
-      title: "Find & validate your next growth bet",
-      subtitle: "From idea to evidence",
-      description: "Most product investments fail because they're built on assumptions. I help you identify the highest-value opportunities, test them fast, and ship with confidence.",
-      features: ["Identify where the real product opportunity is", "Prioritize bets based on user evidence, not opinions", "Move from insight to prototype in weeks, not months"],
-      tag: "This is for you if: You're launching something new or need to validate a direction before investing further."
+      groupTitle: "Product design & AI",
+      groupSubtitle: "Designing product experiences that scale",
+      services: [
+        {
+          title: "Design and validate your next product bet",
+          subtitle: "From opportunity to validated direction",
+          description: "Most product investments fail because they're built on assumptions. I help you find the right opportunity, design the experience, and validate it before you commit.",
+          features: ["Identify high-value product opportunities based on user and business signals", "Design and test end-to-end concepts through prototypes and usability testing", "Align stakeholders around clear, testable hypotheses"],
+          tag: "Best for: Teams deciding what to build next or de-risking a new product direction"
+        },
+        {
+          title: "Product adoption and growth",
+          subtitle: "From first use to long-term value",
+          description: "Acquiring customers is expensive. Losing them is worse. I design end-to-end early lifecycle experiences that improve retention and reduce avoidable churn.",
+          features: ["Build onboarding that drives meaningful activation, not just completion", "Design in-product training and enablement to help users become proficient in complex tools", "Identify friction across the full user journey through Voice of Customer and behavior signals", "Prototype and test improvements fast with AI"],
+          tag: "Best for: Enterprise products with complex workflows, steep learning curves, or low feature adoption"
+        },
+        {
+          title: "Integrate AI into product, design & research workflows",
+          subtitle: "Work faster without losing the craft",
+          description: "Most teams are using AI in isolated ways — summarising research here, generating ideas there. I help you embed AI across product, design, and research workflows so it becomes part of how work gets done, not a set of disconnected experiments.",
+          features: ["Synthesize interviews, surveys, and support data in hours instead of weeks", "Accelerate prototyping and concept exploration with AI-assisted design workflows", "Design repeatable AI-enabled processes for research, discovery, and product design", "Define where AI adds speed, and where human judgment remains critical: problem framing, prioritisation, and quality decisions"],
+          tag: "Best for: Teams that are experimenting with AI but haven't integrated it into their core product, design, and research workflows"
+        }
+      ]
     },
     {
-      title: "From sign-up to lasting relationship",
-      subtitle: "Adoption & lifetime value",
-      description: "Acquiring customers is expensive. Losing them is worse. I design the onboarding, feedback loops, and insight systems that increase adoption and reduce churn.",
-      features: ["Design onboarding that drives activation, not drop-off", "Build Voice of Customer programs that surface what matters", "Turn customer insights into retention levers"],
-      tag: "This is for you if: You're seeing drop-off after sign-up, churn is too high, or your teams don't know why customers leave."
-    },
-    {
-      title: "Align teams around what customers actually experience",
-      subtitle: "From silos to shared direction",
-      description: "When teams work in silos, customers feel the gaps. I map end-to-end journeys and create shared models so teams stop duplicating effort and start delivering coherent experiences.",
-      features: ["Map the real customer journey across touchpoints and teams", "Create a shared framework so product, ops, and support move together", "Turn journey mapping into an ongoing practice, not a one-off exercise"],
-      tag: "This is for you if: Your teams build in isolation, the customer experience feels fragmented, or your journey maps sit in a drawer."
-    },
-    {
-      title: "Make faster, smarter product decisions with AI",
-      subtitle: "From data overload to actionable insight",
-      description: "You're sitting on customer data you're not using. I help you leverage AI to synthesize signals at scale, so teams spot patterns faster and prioritize with evidence.",
-      features: ["Synthesize interviews, surveys, and support data with AI", "Generate insights without months of manual analysis", "Connect experience data to product priorities"],
-      tag: "This is for you if: Research cycles are too slow, your team is drowning in unstructured data, or you want to scale insights without scaling headcount."
-    },
-    {
-      title: "Connect experience quality to business performance",
-      subtitle: "Measure what matters",
-      description: "If you can't measure experience, you can't manage it. I define the metrics and governance that make CX a board-level indicator, not a design team's side project.",
-      features: ["Define experience KPIs tied to business outcomes", "Align product and business decisions around a shared experience vision", "Make CX performance visible to leadership"],
-      tag: "This is for you if: You know experience matters but can't prove it to leadership, or you need a framework to connect CX to revenue."
-    },
-    {
-      title: "Make user-centered thinking the way your org works",
-      subtitle: "Lasting capability, not a one-off workshop",
-      description: "Training one team isn't enough. I raise design capability across your product organization so user-centered thinking becomes how you operate, not something you outsource.",
-      features: ["Assess where your organization stands on UX maturity", "Build playbooks and guidelines teams will actually use", "Embed UX into Product Manager education and culture"],
-      tag: "This is for you if: UX is inconsistent across teams, design gets brought in too late, or you want to scale user-centered thinking beyond the design department."
+      groupTitle: "Service design & operations",
+      groupSubtitle: "Shaping how organizations deliver experiences",
+      services: [
+        {
+          title: "Design services that work end-to-end, not just at the touchpoints",
+          subtitle: "From surface fixes to systemic change",
+          description: "Most service problems aren't visible at the front. I use service design methods to understand the end-to-end user experience first, then redesign processes, handoffs, and systems from the outside in.",
+          features: ["Map the full service ecosystem across frontstage interactions and backstage processes", "Expose systemic failures and bottlenecks through service blueprinting", "Co-design service improvements with cross-functional teams across ops, IT, and product", "Prototype and validate new service concepts before committing to delivery"],
+          tag: "Best for: Organizations with complex, multi-channel services that feel broken or inconsistent from the inside out"
+        },
+        {
+          title: "Connect experience quality to business performance",
+          subtitle: "Measure what matters",
+          description: "If experience isn't measurable, it won't be managed. I define the metrics and governance structures that connect experience quality to business performance.",
+          features: ["Define experience KPIs tied to business outcomes", "Build governance that creates real accountability", "Align product and business decisions around a shared experience vision", "Make CX performance visible to leadership"],
+          tag: "Best for: Leadership teams who believe in CX but lack measurable impact"
+        },
+        {
+          title: "Build a journey-led organization",
+          subtitle: "From fragmented delivery to end-to-end ownership",
+          description: "Scaling experience quality requires more than design teams. I help organizations structure how they work around the end-to-end customer journey across product, operations, and leadership.",
+          features: ["Establish journey management as an ongoing practice that informs prioritization and decision-making", "Create playbooks and governance so journey insights directly shape product and operational decisions", "Align product, operations, and support around a shared view of the customer experience", "Build internal capability so teams can own, maintain, and evolve journeys over time"],
+          tag: "Best for: Organizations where growth is creating fragmentation across product and service delivery"
+        }
+      ]
     }
   ]
 
-  const faqs = [
-    {
-      question: "What is your typical project timeline?",
-      answer: "Most projects take 4-12 weeks depending on scope and complexity. We'll provide a detailed timeline during our initial consultation."
-    },
-    {
-      question: "Do you work with startups?",
-      answer: "Absolutely! We love working with startups and have special packages designed for early-stage companies."
-    },
-    {
-      question: "What is your design process?",
-      answer: "We follow a proven 4-step process: Discovery, Design, Development, and Delivery. Each phase includes client collaboration and feedback."
-    },
-    {
-      question: "Do you offer ongoing support?",
-      answer: "Yes, we provide maintenance and support packages to ensure your product continues to perform optimally."
-    }
-  ]
 
   const getRelatedCaseStudies = (currentId) => {
     return caseStudies.filter(cs => cs.id !== currentId && !cs.externalLink).slice(0, 2)
@@ -1682,30 +1674,38 @@ function App() {
             How we can<br />
             <span className="text-purple-700" style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>work together</span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-0">
-            {services.map((service, index) => (
-              <div key={index} className="group p-10 border border-gray-200 -mt-px -ml-px bg-white hover:bg-purple-700 transition-colors duration-300 cursor-default">
-                <p className="text-xs font-bold tracking-widest mb-2 text-purple-700 group-hover:text-purple-200 transition-colors duration-300">
-                  {String(index + 1).padStart(2, '0')}
-                </p>
-                <h3 className="text-2xl font-black mb-1 text-black group-hover:text-white transition-colors duration-300">{service.title}</h3>
-                <p className="text-xs font-bold tracking-widest mb-6 text-gray-400 group-hover:text-purple-300 transition-colors duration-300">{service.subtitle}</p>
-                <p className="text-sm leading-relaxed mb-8 text-gray-500 group-hover:text-purple-100 transition-colors duration-300">{service.description}</p>
-                <ul className="space-y-0 divide-y divide-gray-100 group-hover:divide-purple-600 mb-6">
-                  {service.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="py-4 text-sm tracking-wide text-gray-600 group-hover:text-purple-100 transition-colors duration-300">
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                {service.tag && (
-                  <div className="mt-2 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg group-hover:bg-purple-50 group-hover:border-purple-200 transition-colors duration-300">
-                    <p className="text-sm text-gray-600 leading-relaxed group-hover:text-purple-700 transition-colors duration-300">{service.tag}</p>
-                  </div>
-                )}
+          {serviceGroups.map((group, gIndex) => (
+            <div key={gIndex} className={gIndex > 0 ? 'mt-16' : ''}>
+              <div className="w-full px-6 py-4 bg-gray-50 border border-gray-200 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="text-sm font-bold tracking-widest text-black uppercase">{group.groupTitle}</span>
+                <span className="text-base text-gray-500">— {group.groupSubtitle}</span>
               </div>
-            ))}
-          </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-0">
+                {group.services.map((service, index) => (
+                  <div key={index} className="group p-10 border border-gray-200 -mt-px -ml-px bg-white hover:bg-purple-700 transition-colors duration-300 cursor-default">
+                    <p className="text-xs font-bold tracking-widest mb-2 text-purple-700 group-hover:text-purple-200 transition-colors duration-300">
+                      {String(gIndex * 3 + index + 1).padStart(2, '0')}
+                    </p>
+                    <h3 className="text-2xl font-black mb-1 text-black group-hover:text-white transition-colors duration-300">{service.title}</h3>
+                    <p className="text-xs font-bold tracking-widest mb-6 text-gray-400 group-hover:text-purple-300 transition-colors duration-300">{service.subtitle}</p>
+                    <p className="text-sm leading-relaxed mb-8 text-gray-500 group-hover:text-purple-100 transition-colors duration-300">{service.description}</p>
+                    <ul className="space-y-0 divide-y divide-gray-100 group-hover:divide-purple-600 mb-6">
+                      {service.features.map((feature, fIndex) => (
+                        <li key={fIndex} className="py-4 text-sm tracking-wide text-gray-600 group-hover:text-purple-100 transition-colors duration-300">
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    {service.tag && (
+                      <div className="mt-2 px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg group-hover:bg-purple-50 group-hover:border-purple-200 transition-colors duration-300">
+                        <p className="text-sm text-gray-600 leading-relaxed group-hover:text-purple-700 transition-colors duration-300">{service.tag}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
