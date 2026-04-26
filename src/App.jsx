@@ -765,7 +765,7 @@ function App() {
   const experienceLabTrainings = [
     {
       id: 1,
-      title: 'Mapeo de experiencias: diseña con visión end-to-end',
+      title: 'Journey Mapping: diseña experiencias end-to-end',
       status: 'available',
       link: 'https://luma.com/xi3c4cd6',
       tools: 'Zoom & Miro',
