@@ -1113,10 +1113,16 @@ function App() {
                         <h3 className="text-4xl md:text-5xl font-black leading-none mb-5">
                           {training.link && training.status === 'available' ? (
                             <a href={training.link} target="_blank" rel="noopener noreferrer" className="text-black hover:text-purple-700 transition-colors">
-                              {training.title}
+                              {training.title.includes(': ') ? (
+                                <>{training.title.split(': ')[0]}: <span className="text-gray-400">{training.title.split(': ').slice(1).join(': ')}</span></>
+                              ) : training.title}
                             </a>
                           ) : (
-                            <span className="text-black">{training.title}</span>
+                            <span className="text-black">
+                              {training.title.includes(': ') ? (
+                                <>{training.title.split(': ')[0]}: <span className="text-gray-400">{training.title.split(': ').slice(1).join(': ')}</span></>
+                              ) : training.title}
+                            </span>
                           )}
                         </h3>
 
@@ -1233,7 +1239,11 @@ function App() {
                     <div className="md:w-1/2 flex flex-col justify-between p-8 md:p-12 gap-6">
                       <div>
                         <h3 className="text-4xl md:text-5xl font-black leading-none mb-5">
-                          <span className="text-black">{training.title}</span>
+                          <span className="text-black">
+                            {training.title.includes(': ') ? (
+                              <>{training.title.split(': ')[0]}: <span className="text-gray-400">{training.title.split(': ').slice(1).join(': ')}</span></>
+                            ) : training.title}
+                          </span>
                         </h3>
 
                         {/* Pills */}
