@@ -1210,6 +1210,21 @@ function App() {
             </div>
           </section>
 
+          {/* Certificate */}
+          <section className="px-6 md:px-12 py-16 border-b border-gray-200">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-12">
+                <div className="md:w-1/2 flex-shrink-0">
+                  <img src="/experience_lab/certificado.png" alt="Certificado de finalización" className="w-full max-w-md mx-auto" />
+                </div>
+                <div className="md:w-1/2">
+                  <h2 className="text-3xl md:text-4xl font-black text-black mb-4">Obtén tu certificado</h2>
+                  <p className="text-lg text-gray-600 leading-relaxed">Destácate y demuestra tus habilidades con un certificado de finalización que puedes añadir a tu CV o perfil de LinkedIn.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* In the pipeline */}
           <section className="px-6 md:px-12 py-16 border-b border-gray-200">
             <div className="max-w-7xl mx-auto">
