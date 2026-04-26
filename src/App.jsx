@@ -1165,11 +1165,11 @@ function App() {
                         {training.price && (
                           <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
                             <div className="py-5">
-                              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">{training.language === 'Spanish' ? 'Precio' : 'Price'}</p>
+                              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">{training.language === 'Spanish' ? 'Precio estándar' : 'Standard Price'}</p>
                               <p className="text-3xl font-black text-black">{training.price}</p>
                             </div>
                             <div className="py-5 border-l border-gray-100 pl-8">
-                              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">{training.language === 'Spanish' ? 'Precio Club' : 'Club Price'}</p>
+                              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">{training.language === 'Spanish' ? 'Precio club' : 'Club Price'}</p>
                               <p className="text-3xl font-black text-purple-700">{training.clubPrice}</p>
                               <a
                                 href={training.clubLink}
