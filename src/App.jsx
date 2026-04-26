@@ -1218,8 +1218,8 @@ function App() {
                   <img src="/experience_lab/certificado.png" alt="Certificado de finalización" className="w-full max-w-md mx-auto" />
                 </div>
                 <div className="md:w-1/2">
-                  <h2 className="text-3xl md:text-4xl font-black text-black mb-4">Obtén tu certificado</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">Destácate y demuestra tus habilidades con un certificado de finalización que puedes añadir a tu CV o perfil de LinkedIn.</p>
+                  <h2 className="text-3xl md:text-4xl font-black text-black mb-4">Earn a certificate</h2>
+                  <p className="text-lg text-gray-600 leading-relaxed">Stand out from the competition and prove your skills by getting a certificate of completion for your CV or LinkedIn profile.</p>
                 </div>
               </div>
             </div>
