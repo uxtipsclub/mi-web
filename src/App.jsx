@@ -148,6 +148,7 @@ function App() {
   const [formStatus, setFormStatus] = useState('idle') // idle | submitting | success | error
   const [pageTransition, setPageTransition] = useState(false)
   const [showExperienceLab, setShowExperienceLab] = useState(false)
+  const [languageFilter, setLanguageFilter] = useState('Spanish')
   const [showWaitlistPopup, setShowWaitlistPopup] = useState(false)
   const [waitlistForm, setWaitlistForm] = useState({ name: '', email: '', courses: [], consent: false })
   const [waitlistStatus, setWaitlistStatus] = useState('idle') // idle | submitting | success | error
@@ -764,16 +765,19 @@ function App() {
   const experienceLabTrainings = [
     {
       id: 1,
-      title: 'Journey Mapping',
+      title: 'Mapeo de experiencias: diseña con visión end-to-end',
       status: 'available',
-      link: 'https://luma.com/xipxvb4a',
+      link: 'https://luma.com/xi3c4cd6',
       tools: 'Zoom & Miro',
       format: 'Online',
       language: 'Spanish',
-      description: 'Learn to visualize the end-to-end customer experience using proven frameworks and hands-on exercises.',
-      longDescription: 'In this session you\'ll discover how to map journeys correctly, avoid the most common mistakes, and transform isolated maps into living, strategic tools that generate real impact.\n\nAnd the best part: this isn\'t just another workshop. It\'s a space where you\'ll learn from real corporate cases, walking away with tools, materials, and practical advice to apply with your team right after the session.',
-      date: 'Saturday, April 25 · 15:30 (2h) CEST',
+      description: 'Aprende a visualizar la experiencia end-to-end del cliente con frameworks probados y ejercicios prácticos.',
+      longDescription: 'En esta sesión descubrirás cómo mapear journeys correctamente, evitar los errores más comunes y transformar mapas aislados en herramientas vivas y estratégicas que generan impacto real.\n\nY lo mejor: esto no es solo otro workshop. Es un espacio donde aprenderás a partir de casos corporativos reales, y saldrás con herramientas, materiales y consejos prácticos para aplicar con tu equipo justo después de la sesión.',
+      date: '12 de Mayo · 18:30 - 20:30 CEST',
       instructor: 'Eugenia Jongewaard',
+      price: '80€',
+      clubPrice: '50€',
+      clubLink: 'https://uxtips.club/en-eur',
       Illustration: JourneyMappingSVG,
     },
     {
@@ -784,8 +788,8 @@ function App() {
       tools: 'Zoom & Miro',
       format: 'Online',
       language: 'Spanish',
-      description: 'Discover how to design services that work for both users and organizations through real cases and applied methodology.',
-      date: 'To be confirmed',
+      description: 'Descubre cómo diseñar servicios que funcionan tanto para usuarios como para organizaciones, a través de casos reales y metodología aplicada.',
+      date: 'Por confirmar',
       instructor: 'Eugenia Jongewaard',
       Illustration: IntroServiceDesignSVG,
     },
@@ -797,10 +801,13 @@ function App() {
       tools: 'Zoom & Miro',
       format: 'Online',
       language: 'Spanish',
-      description: 'Learn to manage customer journeys as a strategic business asset and drive continuous experience improvement.',
-      longDescription: 'Many organizations create valuable journey maps… but then don\'t know how to use them to guide decisions, prioritize initiatives, or align teams. This is where Journey Management comes in.\n\nIn this workshop you\'ll learn how to move from static maps to a continuous practice that connects user insights with real product, service, and business decisions.\n\nAnd the best part: we won\'t just cover the concept. We\'ll work with the most widely used tools for managing customer journeys in complex organizations.',
-      date: 'Thursday, May 21 · 18:30 (2h) CEST',
+      description: 'Aprende a gestionar los customer journeys como un activo estratégico y a impulsar la mejora continua de la experiencia.',
+      longDescription: 'Muchas organizaciones crean journey maps con mucho valor… pero después no saben cómo usarlos para tomar decisiones, priorizar iniciativas o alinear equipos. Aquí es donde entra el Journey Management.\n\nEn este workshop aprenderás a pasar de mapas estáticos a una práctica continua que conecta los insights de usuario con decisiones reales de producto, servicio y negocio.\n\nY lo mejor: no solo veremos el concepto. Trabajaremos con las herramientas más utilizadas para gestionar customer journeys en organizaciones complejas.',
+      date: '21 de Mayo · 18:30 - 20:30 CEST',
       instructor: 'Eugenia Jongewaard',
+      price: '149€',
+      clubPrice: '89€',
+      clubLink: 'https://uxtips.club/en-eur',
       Illustration: JourneyManagementSVG,
     },
     {
@@ -811,8 +818,8 @@ function App() {
       tools: 'Zoom & Miro',
       format: 'Online',
       language: 'Spanish',
-      description: 'Explore how to integrate AI tools into your service design practice and scale insights across your organization.',
-      date: 'To be confirmed',
+      description: 'Explora cómo integrar herramientas de IA en tu práctica de service design y escalar los insights en toda tu organización.',
+      date: 'Por confirmar',
       instructor: 'Eugenia Jongewaard',
       Illustration: ServiceDesignAISVG,
     },
@@ -1062,12 +1069,27 @@ function App() {
           <section className="px-6 md:px-12 py-16 border-b border-gray-200">
             <div className="max-w-7xl mx-auto">
               <div className="mb-10">
-                <h2 className="text-3xl md:text-4xl font-black text-black">
+                <h2 className="text-3xl md:text-4xl font-black text-black mb-6">
                   Upcoming sessions
                 </h2>
+                <div className="flex gap-2">
+                  {['Spanish', 'English'].map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => setLanguageFilter(lang)}
+                      className={`px-4 py-1.5 rounded-full border text-sm font-medium transition-colors ${
+                        languageFilter === lang
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-gray-500 border-gray-300 hover:border-black hover:text-black'
+                      }`}
+                    >
+                      {lang}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div className="flex flex-col">
-                {experienceLabTrainings.filter(t => t.status === 'available').map((training, idx) => (
+                {experienceLabTrainings.filter(t => t.status === 'available' && (languageFilter === 'All' || t.language === languageFilter)).map((training, idx) => (
                   <div key={training.id} className={`flex flex-col md:flex-row border border-gray-200 ${idx !== 0 ? 'mt-12' : ''}`}>
                     {/* Image */}
                     <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '266px' }}>
@@ -1124,7 +1146,7 @@ function App() {
                         {/* Date & Instructor */}
                         <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
                           <div className="py-4">
-                            <p className="text-xs text-gray-400 mb-1">Date</p>
+                            <p className="text-xs text-gray-400 mb-1">{training.language === 'Spanish' ? 'Fecha' : 'Date'}</p>
                             <p className="text-sm text-black font-medium">{training.date}</p>
                           </div>
                           <div className="py-4 border-l border-gray-100 pl-8">
@@ -1132,6 +1154,28 @@ function App() {
                             <p className="text-sm text-black font-medium">{training.instructor}</p>
                           </div>
                         </div>
+
+                        {/* Pricing */}
+                        {training.price && (
+                          <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
+                            <div className="py-5">
+                              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">{training.language === 'Spanish' ? 'Precio' : 'Price'}</p>
+                              <p className="text-3xl font-black text-black">{training.price}</p>
+                            </div>
+                            <div className="py-5 border-l border-gray-100 pl-8">
+                              <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">{training.language === 'Spanish' ? 'Precio Club' : 'Club Price'}</p>
+                              <p className="text-3xl font-black text-purple-700">{training.clubPrice}</p>
+                              <a
+                                href={training.clubLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs text-purple-600 hover:text-purple-800 transition-colors mt-1.5 inline-block underline underline-offset-2"
+                              >
+                                {training.language === 'Spanish' ? 'Acceso a precio reducido ↗' : 'Get reduced price ↗'}
+                              </a>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       <div className="pt-4 border-t border-gray-100">
@@ -1142,14 +1186,14 @@ function App() {
                             rel="noopener noreferrer"
                             className="inline-block border border-black text-black px-8 py-4 font-black text-sm tracking-widest hover:bg-black hover:text-white transition-colors"
                           >
-                            REGISTER ↗
+                            {training.language === 'Spanish' ? 'REGÍSTRATE ↗' : 'REGISTER ↗'}
                           </a>
                         ) : (
                           <button
                             onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
                             className="inline-block border border-purple-700 text-purple-700 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
                           >
-                            JOIN THE WAITING LIST
+                            {training.language === 'Spanish' ? 'APUNTARME A LA LISTA' : 'JOIN THE WAITING LIST'}
                           </button>
                         )}
                       </div>
@@ -1169,7 +1213,7 @@ function App() {
                 </h2>
               </div>
               <div className="flex flex-col">
-                {experienceLabTrainings.filter(t => t.status === 'waitlist').map((training, idx) => (
+                {experienceLabTrainings.filter(t => t.status === 'waitlist' && (languageFilter === 'All' || t.language === languageFilter)).map((training, idx) => (
                   <div key={training.id} className={`flex flex-col md:flex-row border border-gray-200 ${idx !== 0 ? 'mt-12' : ''}`}>
                     {/* Image */}
                     <div className="md:w-1/2 flex-shrink-0 overflow-hidden" style={{ minHeight: '266px' }}>
@@ -1218,7 +1262,7 @@ function App() {
                         {/* Date & Instructor */}
                         <div className="grid grid-cols-2 gap-x-8 border-t border-gray-100">
                           <div className="py-4">
-                            <p className="text-xs text-gray-400 mb-1">Date</p>
+                            <p className="text-xs text-gray-400 mb-1">{training.language === 'Spanish' ? 'Fecha' : 'Date'}</p>
                             <p className="text-sm text-black font-medium">{training.date}</p>
                           </div>
                           <div className="py-4 border-l border-gray-100 pl-8">
@@ -1233,7 +1277,7 @@ function App() {
                           onClick={() => { setShowWaitlistPopup(true); setWaitlistStatus('idle') }}
                           className="inline-block border border-purple-700 text-purple-700 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
                         >
-                          JOIN THE WAITING LIST
+                          {training.language === 'Spanish' ? 'APUNTARME A LA LISTA' : 'JOIN THE WAITING LIST'}
                         </button>
                       </div>
                     </div>
