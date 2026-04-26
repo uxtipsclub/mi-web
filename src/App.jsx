@@ -803,7 +803,7 @@ function App() {
       language: 'Spanish',
       description: 'Aprende a gestionar los customer journeys como un activo estratégico y a impulsar la mejora continua de la experiencia.',
       longDescription: 'Muchas organizaciones crean journey maps con mucho valor… pero después no saben cómo usarlos para tomar decisiones, priorizar iniciativas o alinear equipos. Aquí es donde entra el Journey Management.\n\nEn este workshop aprenderás a pasar de mapas estáticos a una práctica continua que conecta los insights de usuario con decisiones reales de producto, servicio y negocio.\n\nY lo mejor: no solo veremos el concepto. Trabajaremos con las herramientas más utilizadas para gestionar customer journeys en organizaciones complejas.',
-      date: '21 de Mayo · 18:30 - 20:30 CEST',
+      date: '28 de Mayo · 18:30 - 20:30 CEST',
       instructor: 'Eugenia Jongewaard',
       price: '149€',
       clubPrice: '89€',
