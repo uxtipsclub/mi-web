@@ -1210,20 +1210,14 @@ function App() {
             </div>
           </section>
 
-          {/* Certificate */}
+          {/* Certificate — Spanish position */}
+          {languageFilter === 'Spanish' && (
           <section className="px-6 md:px-12 py-16 border-b border-gray-200 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col md:flex-row items-center gap-12">
                 <div className="md:w-1/2 flex-shrink-0 flex justify-center">
-                  {/* Rotating gradient border */}
                   <div className="relative p-[3px] max-w-md w-full overflow-hidden rounded-sm">
-                    <div
-                      className="cert-border-spin absolute rounded-sm"
-                      style={{
-                        inset: '-100%',
-                        background: 'conic-gradient(#c060e0, #7c52c8, #5a62b8, #4a8f8a, #5eead4, #4a8f8a, #5a62b8, #7c52c8, #c060e0)',
-                      }}
-                    />
+                    <div className="cert-border-spin absolute rounded-sm" style={{ inset: '-100%', background: 'conic-gradient(#c060e0, #7c52c8, #5a62b8, #4a8f8a, #5eead4, #4a8f8a, #5a62b8, #7c52c8, #c060e0)' }} />
                     <div className="relative bg-gray-50 rounded-sm">
                       <img src="/experience_lab/certificado.png" alt="Certificate of completion" className="w-full" />
                     </div>
@@ -1236,6 +1230,7 @@ function App() {
               </div>
             </div>
           </section>
+          )}
 
           {/* In the pipeline */}
           <section className="px-6 md:px-12 py-16 border-b border-gray-200">
@@ -1324,6 +1319,28 @@ function App() {
             </div>
           </section>
 
+
+          {/* Certificate — English position */}
+          {languageFilter === 'English' && (
+          <section className="px-6 md:px-12 py-16 border-b border-gray-200 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-12">
+                <div className="md:w-1/2 flex-shrink-0 flex justify-center">
+                  <div className="relative p-[3px] max-w-md w-full overflow-hidden rounded-sm">
+                    <div className="cert-border-spin absolute rounded-sm" style={{ inset: '-100%', background: 'conic-gradient(#c060e0, #7c52c8, #5a62b8, #4a8f8a, #5eead4, #4a8f8a, #5a62b8, #7c52c8, #c060e0)' }} />
+                    <div className="relative bg-gray-50 rounded-sm">
+                      <img src="/experience_lab/certificado.png" alt="Certificate of completion" className="w-full" />
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-1/2">
+                  <h2 className="text-3xl md:text-4xl font-black text-black mb-4">Earn a certificate</h2>
+                  <p className="text-lg text-gray-600 leading-relaxed">Stand out from the competition and prove your skills by getting a certificate of completion for your CV or LinkedIn profile.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          )}
 
           {/* Waitlist CTA */}
           <section id="lab-waitlist-form" className="px-6 md:px-12 py-24 border-t border-gray-200">
