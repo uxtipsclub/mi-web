@@ -1796,6 +1796,24 @@ function App() {
             </div>
           </section>
 
+          {/* Partners */}
+          <section className="px-6 md:px-12 py-16 border-b border-gray-200 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <span className="text-xs font-bold tracking-widest text-purple-700 block mb-10">PARTNERS</span>
+              <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div className="flex-shrink-0">
+                  <img src="/partners/masthead.svg" alt="Service Design Network" className="h-10 w-auto" />
+                </div>
+                <div className="max-w-2xl">
+                  <h3 className="text-xl font-black text-black mb-3">Service Design Network</h3>
+                  <p className="text-gray-600 font-light leading-relaxed">
+                    The Service Design Network is the global community for service design professionals, connecting practitioners, researchers, and educators worldwide. UXTips collaborates with SDN to bring the latest thinking in service design to our Spanish-speaking community — bridging global knowledge with local practice.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Footer */}
           <footer className="py-16 px-6 md:px-12 bg-black text-white border-t border-gray-900">
             <div className="max-w-7xl mx-auto">
