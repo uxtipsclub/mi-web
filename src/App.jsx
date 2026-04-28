@@ -148,6 +148,7 @@ function App() {
   const [formStatus, setFormStatus] = useState('idle') // idle | submitting | success | error
   const [pageTransition, setPageTransition] = useState(false)
   const [showExperienceLab, setShowExperienceLab] = useState(false)
+  const [showCommunity, setShowCommunity] = useState(false)
   const [languageFilter, setLanguageFilter] = useState('Spanish')
   const [showWaitlistPopup, setShowWaitlistPopup] = useState(false)
   const [waitlistForm, setWaitlistForm] = useState({ name: '', email: '', courses: [], consent: false })
@@ -158,6 +159,7 @@ function App() {
     if (fromMobileMenu) setIsMenuOpen(false)
     setPageTransition(true)
     setTimeout(() => {
+      setShowCommunity(false)
       setShowExperienceLab(true)
       window.history.pushState({ page: 'experience-lab' }, '', '/experience-lab')
       window.scrollTo({ top: 0 })
@@ -171,13 +173,33 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const openCommunity = (fromMobileMenu = false) => {
+    if (fromMobileMenu) setIsMenuOpen(false)
+    setPageTransition(true)
+    setTimeout(() => {
+      setShowExperienceLab(false)
+      setShowCommunity(true)
+      window.history.pushState({ page: 'community' }, '', '/community')
+      window.scrollTo({ top: 0 })
+      requestAnimationFrame(() => setPageTransition(false))
+    }, fromMobileMenu ? 300 : 50)
+  }
+
+  const closeCommunity = () => {
+    setShowCommunity(false)
+    window.history.pushState({}, '', '/')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   const goToSection = (href, fromMobileMenu = false) => {
     if (href === '/experience-lab') { openExperienceLab(fromMobileMenu); return }
+    if (href === '/community') { openCommunity(fromMobileMenu); return }
     if (fromMobileMenu) setIsMenuOpen(false)
-    if (showExperienceLab) {
+    if (showExperienceLab || showCommunity) {
       setPageTransition(true)
       setTimeout(() => {
         setShowExperienceLab(false)
+        setShowCommunity(false)
         window.history.pushState({}, '', '/')
         setTimeout(() => {
           const target = document.querySelector(href)
@@ -244,7 +266,7 @@ function App() {
     { name: 'Work', href: '#work' },
     { name: 'Services', href: '#services' },
     { name: 'Experience Lab', href: '/experience-lab' },
-    { name: 'Community', href: '#community' },
+    { name: 'Community', href: '/community' },
     { name: 'About', href: '#about' },
   ]
 
@@ -503,12 +525,14 @@ function App() {
     const match = caseStudies.find(cs => cs.slug === slug)
     if (match) setSelectedCaseStudy(match)
     if (slug === '/experience-lab') setShowExperienceLab(true)
+    if (slug === '/community') setShowCommunity(true)
 
     const handlePopState = () => {
       const s = window.location.pathname
       const m = caseStudies.find(cs => cs.slug === s)
       setSelectedCaseStudy(m || null)
       setShowExperienceLab(s === '/experience-lab')
+      setShowCommunity(s === '/community')
       if (m || (s === '/' && !window.location.hash)) window.scrollTo({ top: 0, behavior: 'smooth' })
     }
     window.addEventListener('popstate', handlePopState)
@@ -1412,6 +1436,404 @@ function App() {
                 </div>
               </div>
 
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p className="text-gray-600 text-xs tracking-wide text-center md:text-left flex flex-wrap items-center justify-center md:justify-start gap-x-1 gap-y-0.5">
+                  <span>Made with Cursor, Claude,</span>
+                  <span>and intentional human thinking with</span>
+                  <span className="inline-flex items-center gap-1">
+                    <svg className="w-3.5 h-3.5 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    from Barcelona
+                  </span>
+                </p>
+                <p className="text-gray-700 text-xs tracking-widest">© 2026 EUGENIA JONGEWAARD. ALL RIGHTS RESERVED.</p>
+              </div>
+            </div>
+          </footer>
+
+        </div>
+      </div>
+    )
+  }
+
+  if (showCommunity) {
+    const communityTestimonials = [
+      { name: 'Andrés P.', role: 'Design Lead', text: 'What I love most is that Eugenia practises what she teaches. Every strategy, every framework — she\'s tested it in the field. That credibility is rare.' },
+      { name: 'David', role: 'Business Analyst', text: 'I loved the Journey Mapping workshop, especially being able to practice in a group setting — it works as a real trigger for raising new questions and debates. I\'m taking with me the notes directed both at myself and at the other participants.' },
+      { name: 'Ruth', role: 'Lead Researcher', text: 'I really enjoyed it. The information and tips in the Journey Mapping workshop motivated me to implement it with my work team and in my projects.' },
+    ]
+
+    return (
+      <div className="min-h-screen bg-white">
+
+        {/* Page transition overlay */}
+        <div
+          className="fixed inset-0 z-[45] bg-white pointer-events-none"
+          style={{ opacity: pageTransition ? 1 : 0, transition: pageTransition ? 'none' : 'opacity 0.6s ease' }}
+        />
+
+        {/* Header */}
+        <header className={`fixed top-0 w-full bg-white z-50 border-b border-gray-200 transition-transform duration-300 ${navVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="flex items-center justify-between h-16">
+              <a href="#" aria-label="Eugenia Jongewaard — Go to home" onClick={(e) => { e.preventDefault(); closeCommunity() }}>
+                <img src="/eugenia_logo_main.png" alt="Eugenia Jongewaard - Home" className="h-8 w-auto" />
+              </a>
+              <nav className="hidden lg:flex items-center divide-x divide-gray-300 border-x border-gray-300">
+                {menuItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => { e.preventDefault(); goToSection(item.href) }}
+                    className={`px-6 py-[18px] font-medium text-sm tracking-widest transition-colors ${item.href === '/community' ? 'text-purple-700' : 'text-black hover:text-purple-700'}`}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-6 py-[18px] text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors">
+                  Newsletter ↗
+                </a>
+                <a href="https://cal.com/eugenia-jongewaard" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-[18px] bg-purple-700 text-white font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Book a call ↗
+                </a>
+              </nav>
+              <button
+                onClick={toggleMenu}
+                className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-nav-community"
+              >
+                <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </button>
+            </div>
+            <nav id="mobile-nav-community" aria-label="Mobile navigation" className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="flex flex-col border-t border-gray-200">
+                {menuItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => { e.preventDefault(); goToSection(item.href, true) }}
+                    className={`px-0 py-4 font-medium text-sm tracking-widest transition-colors border-b border-gray-100 ${item.href === '/community' ? 'text-purple-700' : 'text-black hover:text-purple-700'}`}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                <a href="https://uxtipsclub.beehiiv.com/" target="_blank" rel="noopener noreferrer" className="px-0 py-4 text-black hover:text-purple-700 font-medium text-sm tracking-widest transition-colors border-b border-gray-100 block">
+                  Newsletter ↗
+                </a>
+                <a href="https://cal.com/eugenia-jongewaard" target="_blank" rel="noopener noreferrer" className="my-4 flex items-center gap-2 bg-purple-700 text-white px-6 py-3 font-bold text-sm tracking-widest hover:bg-purple-800 transition-colors text-left">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Book a call ↗
+                </a>
+              </div>
+            </nav>
+          </div>
+        </header>
+
+        <div className="pt-16">
+
+          {/* Hero */}
+          <section className="px-6 md:px-12 pt-16 pb-16 border-b border-gray-200 bg-black text-white">
+            <div className="max-w-7xl mx-auto">
+              <span className="text-xs font-bold tracking-widest text-purple-400 block mb-6">COMMUNITY</span>
+              <div className="grid md:grid-cols-2 gap-16 items-end">
+                <h1 className="text-5xl md:text-7xl font-black leading-none">
+                  Helping designers<br />
+                  <span style={{ color: '#5eead4', fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>level up</span><br />
+                  their careers
+                </h1>
+                <div>
+                  <p className="text-gray-300 text-lg font-light leading-relaxed mb-5">
+                    In 2016 I created one of the first Spanish YouTube channels about UX Design — today it reaches more than 50K subscribers. I built this space to share my experiences, knowledge, and help people from the Spanish-speaking community transition into UX.
+                  </p>
+                  <p className="text-gray-400 text-lg font-light leading-relaxed mb-8">
+                    Over the years the community has grown into something much bigger: a private club, live workshops, and a network of designers who are serious about elevating their practice.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button
+                      onClick={() => { const el = document.querySelector('#community-club'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }}
+                      className="border border-purple-500 text-purple-400 px-8 py-4 font-black text-xs tracking-widest hover:bg-purple-700 hover:text-white hover:border-purple-700 transition-colors text-center"
+                    >
+                      LEARN MORE
+                    </button>
+                    <a href="https://www.youtube.com/@UXTips" target="_blank" rel="noopener noreferrer" className="border border-gray-600 text-gray-400 px-8 py-4 font-black text-xs tracking-widest hover:border-white hover:text-white transition-colors text-center">
+                      WATCH ON YOUTUBE ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Stats */}
+          <section className="bg-black border-b border-gray-800">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 border border-gray-800">
+                <div className="p-8 border-r border-gray-800">
+                  <p className="text-4xl font-black text-purple-400 mb-1">50K+</p>
+                  <p className="text-xs font-bold tracking-widest text-gray-500">SUBSCRIBERS</p>
+                </div>
+                <div className="p-8 border-r border-gray-800">
+                  <p className="text-4xl font-black text-purple-400 mb-1">2016</p>
+                  <p className="text-xs font-bold tracking-widest text-gray-500">CHANNEL FOUNDED</p>
+                </div>
+                <div className="p-8 border-r border-gray-800">
+                  <p className="text-4xl font-black text-purple-400 mb-1">200+</p>
+                  <p className="text-xs font-bold tracking-widest text-gray-500">CLUB MEMBERS</p>
+                </div>
+                <div className="p-8">
+                  <p className="text-4xl font-black text-purple-400 mb-1">1:1</p>
+                  <p className="text-xs font-bold tracking-widest text-gray-500">PERSONALIZED COACHING</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Video carousels */}
+          <section className="bg-black overflow-hidden border-b border-gray-800">
+            <style>{`
+              @keyframes marquee-left-c { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+              @keyframes marquee-right-c { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+              .marquee-left-c { animation: marquee-left-c 35s linear infinite; }
+              .marquee-right-c { animation: marquee-right-c 40s linear infinite; }
+              .marquee-left-c:hover, .marquee-right-c:hover { animation-play-state: paused; }
+            `}</style>
+            <div className="overflow-hidden border-t border-gray-800">
+              <div className="flex gap-4 marquee-left-c w-max py-4 px-2">
+                {[
+                  { title: "Cómo crear Videos con IA para contar Historias en UX", color: "from-purple-600 to-indigo-700", thumbnail: "https://i.ytimg.com/vi/DdjDPdILup0/hqdefault.jpg", url: "https://youtu.be/DdjDPdILup0" },
+                  { title: "Cursor - Tutorial para Principiantes (Vibe-coding)", color: "from-indigo-600 to-blue-700", thumbnail: "https://i.ytimg.com/vi/Wt4Nfza_v-U/hqdefault.jpg", url: "https://youtu.be/Wt4Nfza_v-U" },
+                  { title: "De Relume a Cursor en 5 minutos: Acelera tu Diseño sin perder Calidad", color: "from-violet-600 to-purple-700", thumbnail: "https://i.ytimg.com/vi/4fp3Tgo7itE/hqdefault.jpg", url: "https://youtu.be/4fp3Tgo7itE" },
+                  { title: "Convierte tu IDEA en un PROTOTIPO en minutos con UX Pilot + Figma", color: "from-blue-600 to-violet-700", thumbnail: "https://i.ytimg.com/vi/WhFGNrN7OOA/hqdefault.jpg", url: "https://youtu.be/WhFGNrN7OOA" },
+                  { title: "¿Qué es UX Design? - La historia", color: "from-purple-700 to-pink-700", thumbnail: "https://i.ytimg.com/vi/qIrON3eK38A/hqdefault.jpg", url: "https://youtu.be/qIrON3eK38A" },
+                  { title: "Ruined by Design [Reseña de Libro]", color: "from-fuchsia-600 to-purple-700", thumbnail: "https://i.ytimg.com/vi/VwjvaL2QtZQ/hqdefault.jpg", url: "https://youtu.be/VwjvaL2QtZQ" },
+                  { title: "Como una conferencia de UX cambió mi carrera", color: "from-indigo-700 to-purple-600", thumbnail: "https://i.ytimg.com/vi/Fc1wkEoPIx8/hqdefault.jpg", url: "https://youtu.be/Fc1wkEoPIx8" },
+                  { title: "Cómo mejorar tus habilidades en UX Design con UXCel", color: "from-purple-600 to-violet-800", thumbnail: "https://i.ytimg.com/vi/dEvJ0L4PO80/hqdefault.jpg", url: "https://youtu.be/dEvJ0L4PO80" },
+                ].flatMap((v, _, arr) => [v, ...arr].slice(0, arr.length * 2)).slice(0, 16).map((video, i) => (
+                  <a key={i} href={video.url} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 w-56 cursor-pointer group">
+                    <div className={`w-full h-32 bg-gradient-to-br ${video.color} relative mb-3 overflow-hidden rounded-lg`}>
+                      <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                        <div className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center">
+                          <span className="text-white text-sm ml-1">▶</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs font-bold text-gray-300 leading-snug group-hover:text-white transition-colors line-clamp-2">{video.title}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div className="overflow-hidden border-b border-gray-800">
+              <div className="flex gap-4 marquee-right-c w-max py-4 px-2">
+                {[
+                  { title: "Rethinking Users [Reseña de Libro]", color: "from-pink-600 to-purple-700", thumbnail: "https://i.ytimg.com/vi/ROTM4cO-oBo/hqdefault.jpg", url: "https://youtu.be/ROTM4cO-oBo" },
+                  { title: "Cómo crear y presentar los flujos de usuario con Overflow", color: "from-purple-600 to-rose-700", thumbnail: "https://i.ytimg.com/vi/4JQJ-MVFvH4/hqdefault.jpg", url: "https://youtu.be/4JQJ-MVFvH4" },
+                  { title: "Colaborando con Desarrolladores [Entrevista a Michael]", color: "from-violet-600 to-fuchsia-700", thumbnail: "https://i.ytimg.com/vi/jWi6BqMHc18/hqdefault.jpg", url: "https://youtu.be/jWi6BqMHc18" },
+                  { title: "¿Cómo saber qué método de investigación hacer y cuándo?", color: "from-indigo-600 to-purple-800", thumbnail: "https://i.ytimg.com/vi/sqG0Ch7mPKg/hqdefault.jpg", url: "https://youtu.be/sqG0Ch7mPKg" },
+                  { title: "Análisis de Prueba de Usabilidad con Reframer", color: "from-purple-800 to-blue-700", thumbnail: "https://i.ytimg.com/vi/KfcKYQgXQnA/hqdefault.jpg", url: "https://youtu.be/KfcKYQgXQnA" },
+                  { title: "Mi transición a Diseño de Servicios", color: "from-blue-700 to-indigo-600", thumbnail: "https://i.ytimg.com/vi/UE9q2qaW3Po/hqdefault.jpg", url: "https://youtu.be/UE9q2qaW3Po" },
+                  { title: "Volver al verdadero UX", color: "from-fuchsia-700 to-violet-600", thumbnail: "https://i.ytimg.com/vi/7hUNbMU_ZYM/hqdefault.jpg", url: "https://youtu.be/7hUNbMU_ZYM" },
+                  { title: "5 libros para comenzar en Diseño de Servicios", color: "from-purple-700 to-indigo-800", thumbnail: "https://i.ytimg.com/vi/kBkdUSmz27w/hqdefault.jpg", url: "https://youtu.be/kBkdUzmz27w" },
+                ].flatMap((v, _, arr) => [v, ...arr].slice(0, arr.length * 2)).slice(0, 16).map((video, i) => (
+                  <a key={i} href={video.url} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 w-56 cursor-pointer group">
+                    <div className={`w-full h-32 bg-gradient-to-br ${video.color} relative mb-3 overflow-hidden rounded-lg`}>
+                      <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                        <div className="w-10 h-10 rounded-full bg-white/20 border border-white/40 flex items-center justify-center">
+                          <span className="text-white text-sm ml-1">▶</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs font-bold text-gray-300 leading-snug group-hover:text-white transition-colors line-clamp-2">{video.title}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonials */}
+          <section className="px-6 md:px-12 py-20 border-b border-gray-200">
+            <div className="max-w-7xl mx-auto">
+              <div className="mb-14">
+                <span className="text-xs font-bold tracking-widest text-purple-700 block mb-4">TESTIMONIALS</span>
+                <h2 className="text-4xl md:text-5xl font-black text-black leading-tight">
+                  What the community<br />
+                  <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7' }}>is saying</span>
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-0 border border-gray-200">
+                {communityTestimonials.map((t, i) => (
+                  <div key={i} className={`p-8 border-gray-200 ${i % 3 !== 2 ? 'lg:border-r' : ''} ${i % 2 !== 1 ? 'md:border-r lg:border-r-0' : 'md:border-r-0'} ${i < communityTestimonials.length - 3 ? 'lg:border-b' : ''} ${i < communityTestimonials.length - 2 ? 'md:border-b' : ''} border-b lg:last:border-b-0`}>
+                    <svg className="w-6 h-6 text-purple-300 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                    <p className="text-gray-600 font-light leading-relaxed mb-6 text-sm">{t.text}</p>
+                    <div className="border-t border-gray-100 pt-4">
+                      <p className="text-sm font-black text-black">{t.name}</p>
+                      <p className="text-xs text-purple-600 tracking-wide mt-0.5">{t.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* UXTips Club */}
+          <section id="community-club" className="px-6 md:px-12 py-20 border-b border-gray-200 bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                  <span className="text-xs font-bold tracking-widest text-purple-700 block mb-4">PRIVATE COMMUNITY</span>
+                  <h2 className="text-4xl md:text-5xl font-black text-black leading-tight mb-6">
+                    uxtips<span style={{ color: '#a855f7' }}>.club</span>
+                  </h2>
+                  <p className="text-gray-600 text-lg font-light leading-relaxed mb-5">
+                    A private Spanish-speaking community where designers come to grow. More than 200 members building their careers and products with AI.
+                  </p>
+                  <p className="text-gray-600 font-light leading-relaxed mb-8">
+                    Inside the club you get exclusive content, early seats at Experience Lab workshops at a reduced price, and a community of peers who push you to think bigger.
+                  </p>
+                  <div className="space-y-3 mb-10">
+                    {[
+                      'AI tools & workflows to build products faster',
+                      'Templates and resources',
+                      'Monthly sessions with experts',
+                      'Meetups',
+                      'Vibe coding playbook',
+                      'Extra YouTube videos',
+                      'Early access + discounted Experience Lab seats',
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <span className="w-5 h-5 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-3 h-3 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                        <span className="text-sm text-gray-700">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <a
+                    href="https://uxtips.club"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-purple-700 text-white px-10 py-5 font-black text-sm tracking-widest hover:bg-purple-800 transition-colors"
+                  >
+                    JOIN UXTIPS.CLUB ↗
+                  </a>
+                </div>
+                <div className="relative">
+                  <div className="border border-gray-200 bg-white p-10 shadow-sm">
+                    <div className="flex items-center gap-3 mb-8 pb-8 border-b border-gray-100">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center">
+                        <span className="text-white font-black text-lg">U</span>
+                      </div>
+                      <div>
+                        <p className="font-black text-black text-sm">UXTips Club</p>
+                        <p className="text-xs text-gray-400">Private community · 200+ members</p>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      {[
+                        { label: 'AI & Product Building', color: 'bg-teal-100 text-teal-700' },
+                        { label: 'Templates & Resources', color: 'bg-purple-100 text-purple-700' },
+                        { label: 'Expert Sessions', color: 'bg-amber-100 text-amber-700' },
+                        { label: 'Meetups', color: 'bg-pink-100 text-pink-700' },
+                        { label: 'Vibe Coding', color: 'bg-indigo-100 text-indigo-700' },
+                        { label: 'Experience Lab Access', color: 'bg-green-100 text-green-700' },
+                      ].map((tag, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${tag.color}`}>{tag.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Experience Lab */}
+          <section className="px-6 md:px-12 py-20 border-b border-gray-200">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                  <span className="text-xs font-bold tracking-widest text-purple-700 block mb-4">EXPERIENCE LAB</span>
+                  <h2 className="text-4xl md:text-5xl font-black text-black leading-tight mb-6">
+                    The space for<br />
+                    <span style={{ fontFamily: '"pollen-web", serif', fontStyle: 'italic', color: '#a855f7' }}>practical workshops</span>
+                  </h2>
+                  <p className="text-gray-600 text-lg font-light leading-relaxed mb-5">
+                    Experience Lab is where the theory meets the field. Hands-on workshops designed to help you design, manage, and scale end-to-end experiences across products and services.
+                  </p>
+                  <p className="text-gray-600 font-light leading-relaxed mb-8">
+                    Each session is built around real frameworks and real scenarios — not slides, not passive learning. You leave with something you can apply immediately.
+                  </p>
+                  <button
+                    onClick={() => { closeCommunity(); setTimeout(() => openExperienceLab(), 400) }}
+                    className="inline-block bg-black text-white px-10 py-5 font-black text-sm tracking-widest hover:bg-purple-700 transition-colors"
+                  >
+                    EXPLORE EXPERIENCE LAB →
+                  </button>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { title: 'Journey Mapping', bg: 'bg-gradient-to-br from-purple-600 to-indigo-700' },
+                    { title: 'Service Design', bg: 'bg-gradient-to-br from-teal-600 to-cyan-700' },
+                    { title: 'Journey Management', bg: 'bg-gradient-to-br from-indigo-600 to-blue-700' },
+                    { title: 'AI + Experience', bg: 'bg-gradient-to-br from-violet-600 to-purple-800' },
+                  ].map((card, i) => (
+                    <div key={i} className={`${card.bg} p-6 flex items-end min-h-[140px]`}>
+                      <p className="text-white font-black text-sm leading-tight">{card.title}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="py-16 px-6 md:px-12 bg-black text-white border-t border-gray-900">
+            <div className="max-w-7xl mx-auto">
+              <div className="mb-12">
+                <h2 className="text-5xl md:text-7xl font-black text-white leading-none">
+                  Building a community<br />
+                  <span style={{ color: '#5eead4', fontFamily: '"pollen-web", serif', fontStyle: 'italic', fontSize: '1.2em' }}>that grows together</span>
+                </h2>
+              </div>
+              <div className="flex flex-col md:flex-row items-start gap-10 mb-12 pb-12 border-b border-gray-800">
+                <div>
+                  <p className="text-xs font-bold tracking-widest text-purple-400 mb-4">COME SAY HI</p>
+                  <div className="flex gap-4">
+                    <a href="https://www.linkedin.com/in/eugeniajongewaard/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                      className="w-12 h-12 border border-purple-700 flex items-center justify-center text-purple-400 hover:bg-purple-700 hover:text-white transition-colors">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/uxtipsonline/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                      className="w-12 h-12 border border-purple-700 flex items-center justify-center text-purple-400 hover:bg-purple-700 hover:text-white transition-colors">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@UXTips" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+                      className="w-12 h-12 border border-purple-700 flex items-center justify-center text-purple-400 hover:bg-purple-700 hover:text-white transition-colors">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs font-bold tracking-widest text-purple-400 mb-4">GET IN TOUCH</p>
+                  <button
+                    onClick={() => { closeCommunity(); setTimeout(() => { const el = document.querySelector('#contact-form'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 400) }}
+                    className="inline-block border border-purple-700 text-purple-400 px-8 py-4 font-black text-sm tracking-widest hover:bg-purple-700 hover:text-white transition-colors"
+                  >
+                    CONTACT ME →
+                  </button>
+                  <p className="text-xs text-gray-600 mt-3">or email hola (@) eugeniajongewaard.com</p>
+                </div>
+              </div>
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p className="text-gray-600 text-xs tracking-wide text-center md:text-left flex flex-wrap items-center justify-center md:justify-start gap-x-1 gap-y-0.5">
                   <span>Made with Cursor, Claude,</span>
