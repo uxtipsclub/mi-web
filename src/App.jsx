@@ -1247,7 +1247,7 @@ function App() {
                   <div className="relative p-[3px] max-w-md w-full overflow-hidden rounded-sm">
                     <div className="cert-border-spin absolute rounded-sm" style={{ inset: '-100%', background: 'conic-gradient(#c060e0, #7c52c8, #5a62b8, #4a8f8a, #5eead4, #4a8f8a, #5a62b8, #7c52c8, #c060e0)' }} />
                     <div className="relative bg-gray-50 rounded-sm">
-                      <img src="/experience_lab/certificado.png" alt="Certificate of completion" className="w-full" />
+                      <img src="/experience_lab/certificado_experience_lab.png" alt="Certificate of completion" className="w-full" />
                     </div>
                   </div>
                 </div>
@@ -1357,7 +1357,7 @@ function App() {
                   <div className="relative p-[3px] max-w-md w-full overflow-hidden rounded-sm">
                     <div className="cert-border-spin absolute rounded-sm" style={{ inset: '-100%', background: 'conic-gradient(#c060e0, #7c52c8, #5a62b8, #4a8f8a, #5eead4, #4a8f8a, #5a62b8, #7c52c8, #c060e0)' }} />
                     <div className="relative bg-gray-50 rounded-sm">
-                      <img src="/experience_lab/certificado.png" alt="Certificate of completion" className="w-full" />
+                      <img src="/experience_lab/certificado_experience_lab.png" alt="Certificate of completion" className="w-full" />
                     </div>
                   </div>
                 </div>
